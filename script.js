@@ -163,6 +163,13 @@ let isPlaying = false;
 let filteredBeats = [...beats];
 let audioElement = document.getElementById('audioElement');
 
+// Duration metadata loading control
+const durationCache = new Map(); // key: file path, value: seconds (number)
+let metadataConcurrency = 0;
+const MAX_METADATA_CONCURRENCY = 5;
+const durationQueue = []; // queue of { file, element, mode }
+const pendingDurationAudios = new Set(); // active Audio objects for cancellation
+
 // DOM elements
 const modeSwitch = document.getElementById('modeSwitch');
 const genreHeader = document.getElementById('genreHeader');
@@ -210,25 +217,90 @@ function renderBeats() {
         `;
         beatsContainer.appendChild(beatRow);
         
-        // Load duration asynchronously
+        // Load duration asynchronously (queued with concurrency + cache)
         loadBeatDuration(beat.file, beatRow.querySelector('.beat-duration'));
     });
 }
 
 // Load beat duration
 function loadBeatDuration(file, element) {
-    const folderPath = currentMode === 'beats' ? 'MP3' : 'Ideas';
-    const audio = new Audio(`${folderPath}/${file}`);
-    audio.addEventListener('loadedmetadata', function() {
-        element.textContent = formatTime(audio.duration);
-    });
-    audio.addEventListener('error', function() {
-        element.textContent = '0:00';
-    });
+    // If cached, use it immediately
+    if (durationCache.has(file)) {
+        const seconds = durationCache.get(file);
+        element.textContent = formatTime(seconds);
+        return;
+    }
+
+    // Enqueue task; include mode to build correct folder path when executed
+    durationQueue.push({ file, element, mode: currentMode });
+    processDurationQueue();
 }
 
-// Play specific beat
+function processDurationQueue() {
+    while (metadataConcurrency < MAX_METADATA_CONCURRENCY && durationQueue.length > 0) {
+        const task = durationQueue.shift();
+        const { file, element, mode } = task;
+
+        // If element no longer exists in DOM, skip
+        if (!element || !document.body.contains(element)) continue;
+
+        metadataConcurrency++;
+        const folderPath = mode === 'beats' ? 'MP3' : 'Ideas';
+        const audio = new Audio(`${folderPath}/${file}`);
+        pendingDurationAudios.add(audio);
+
+        const cleanup = () => {
+            pendingDurationAudios.delete(audio);
+            metadataConcurrency = Math.max(0, metadataConcurrency - 1);
+            processDurationQueue();
+        };
+
+        audio.addEventListener('loadedmetadata', function() {
+            durationCache.set(file, audio.duration);
+            if (document.body.contains(element)) {
+                element.textContent = formatTime(audio.duration);
+            }
+            cleanup();
+        }, { once: true });
+
+        audio.addEventListener('error', function() {
+            // Cache zero to avoid retry storms
+            durationCache.set(file, 0);
+            if (document.body.contains(element)) {
+                element.textContent = '0:00';
+            }
+            cleanup();
+        }, { once: true });
+    }
+}
+
+// Play specific beat (with toggle functionality)
 function playBeat(index) {
+    // If the same beat is already playing, toggle pause/play
+    if (currentBeatIndex === index && audioElement.src && !audioElement.src.includes('blob:')) {
+        if (isPlaying) {
+            // Pause the current track
+            audioElement.pause();
+            isPlaying = false;
+        } else {
+            // Resume the current track
+            audioElement.play().then(() => {
+                isPlaying = true;
+                updatePlayButton();
+                updateBeatCards();
+            }).catch(error => {
+                console.error('Error resuming audio:', error);
+                currentTrack.textContent = 'Error resuming audio file';
+                isPlaying = false;
+                updatePlayButton();
+            });
+        }
+        updatePlayButton();
+        updateBeatCards();
+        return;
+    }
+    
+    // Play a new beat
     currentBeatIndex = index;
     const beat = currentData[currentBeatIndex];
     const folderPath = currentMode === 'beats' ? 'MP3' : 'Ideas';
@@ -319,14 +391,44 @@ function togglePlay() {
 
 // Previous beat
 function previousBeat() {
-    currentBeatIndex = currentBeatIndex > 0 ? currentBeatIndex - 1 : currentData.length - 1;
-    playBeat(currentBeatIndex);
+    // Use filtered list for navigation
+    const list = filteredBeats && filteredBeats.length ? filteredBeats : currentData;
+    if (!list.length) return; // nothing to play
+
+    // Find current position within the filtered list
+    const currentInFiltered = list.findIndex(b => currentData.indexOf(b) === currentBeatIndex);
+
+    // If current track not found (e.g., filter changed), start from last
+    let prevIdxFiltered = currentInFiltered >= 0
+        ? (currentInFiltered - 1 + list.length) % list.length
+        : list.length - 1;
+
+    const targetBeat = list[prevIdxFiltered];
+    const targetIndexInData = currentData.indexOf(targetBeat);
+    if (targetIndexInData >= 0) {
+        playBeat(targetIndexInData);
+    }
 }
 
 // Next beat
 function nextBeat() {
-    currentBeatIndex = currentBeatIndex < currentData.length - 1 ? currentBeatIndex + 1 : 0;
-    playBeat(currentBeatIndex);
+    // Use filtered list for navigation
+    const list = filteredBeats && filteredBeats.length ? filteredBeats : currentData;
+    if (!list.length) return; // nothing to play
+
+    // Find current position within the filtered list
+    const currentInFiltered = list.findIndex(b => currentData.indexOf(b) === currentBeatIndex);
+
+    // If current track not found (e.g., filter changed), start from first
+    let nextIdxFiltered = currentInFiltered >= 0
+        ? (currentInFiltered + 1) % list.length
+        : 0;
+
+    const targetBeat = list[nextIdxFiltered];
+    const targetIndexInData = currentData.indexOf(targetBeat);
+    if (targetIndexInData >= 0) {
+        playBeat(targetIndexInData);
+    }
 }
 
 // Update play button icon
@@ -381,6 +483,33 @@ function filterBeats() {
 
 // Toggle between beats and ideas mode
 function toggleMode() {
+    // Stop current playback and reset player state FIRST
+    if (isPlaying) {
+        audioElement.pause();
+        isPlaying = false;
+    }
+    
+    // Reset audio element completely
+    audioElement.src = '';
+    audioElement.load();
+    
+    // Cancel any in-flight duration metadata loads and clear pending queue
+    durationQueue.length = 0;
+    pendingDurationAudios.forEach(a => {
+        try {
+            // Best-effort abort
+            a.src = '';
+            a.load();
+        } catch (_) {}
+    });
+    pendingDurationAudios.clear();
+    
+    // Reset player state
+    currentBeatIndex = 0;
+    updatePlayButton();
+    updateBeatCards();
+    
+    // Update mode and data
     currentMode = modeSwitch.checked ? 'ideas' : 'beats';
     currentData = currentMode === 'beats' ? beats : ideasData;
     
@@ -397,13 +526,7 @@ function toggleMode() {
     
     renderBeats();
     
-    // Stop current playback
-    if (isPlaying) {
-        audioElement.pause();
-        isPlaying = false;
-        updatePlayButton();
-    }
-    
+    // Update track info
     currentTrack.textContent = currentMode === 'beats' ? 'Select a beat to play' : 'Select an idea to play';
 }
 

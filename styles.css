@@ -696,7 +696,7 @@ body {
     }
     
     .player-right {
-        min-width: 80px;
+        display: none;
     }
     
     .list-header {
