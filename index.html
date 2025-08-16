@@ -4,7 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Anibal Kitchen - Beats Catalog</title>
-    <link rel="stylesheet" href="styles.css">
+    <script>
+        (function(){
+            function setVersion(ver){
+                window.__BUILD_VERSION = ver;
+                // Inject CSS with version
+                var css = document.createElement('link');
+                css.rel = 'stylesheet';
+                css.href = 'styles.css?v=' + encodeURIComponent(ver);
+                document.head.appendChild(css);
+                // Inject JS with version (defer so DOMContentLoaded in script.js still fires)
+                var js = document.createElement('script');
+                js.src = 'script.js?v=' + encodeURIComponent(ver);
+                js.defer = true;
+                document.head.appendChild(js);
+            }
+            fetch('version.txt', { cache: 'no-store' })
+                .then(function(r){ return r.ok ? r.text() : Promise.reject(); })
+                .then(function(t){ setVersion((t || '').trim() || Date.now().toString()); })
+                .catch(function(){ setVersion(Date.now().toString()); });
+        })();
+    </script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
@@ -118,6 +138,5 @@
     </div>
 
     <audio id="audioElement" preload="metadata"></audio>
-    <script src="script.js"></script>
 </body>
 </html>
