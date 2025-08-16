@@ -97,6 +97,11 @@ const beats = [
     { name: "Witchcraft", file: "Boom Bap/Witchcraft.mp3", genre: "boom-bap", size: 3799400 },
     { name: "illuminati", file: "Boom Bap/illuminati.mp3", genre: "boom-bap", size: 3783080 },
 
+    // Dark Boom Bap (newly registered)
+    { name: "Andromeda", file: "Dark Boom Bap/Andromeda.mp3", genre: "dark-boom-bap", size: 4621159 },
+    { name: "Ira", file: "Dark Boom Bap/Ira.mp3", genre: "dark-boom-bap", size: 4603393 },
+    { name: "Roto", file: "Dark Boom Bap/Roto.mp3", genre: "dark-boom-bap", size: 3903074 },
+
     // Trap (25 beats)
     { name: "24/7", file: "Trap/24_7.mp3", genre: "trap", size: 3399600 },
     { name: "300", file: "Trap/300.mp3", genre: "trap", size: 2694433 },
@@ -155,6 +160,23 @@ const beats = [
     { name: "Break You", file: "Rock/Break You.mp3", genre: "rock", size: 4241479 }
 ];
 
+// Map Boom Bap -> Dark Boom Bap if file was moved
+// List of filenames present in `MP3/Dark Boom Bap/`
+const DARK_BOOM_BAP_FILES = new Set([
+    "100k Stack.mp3","7 Kilos.mp3","Abnormal Thoughts.mp3","Ain't Easy.mp3","Andromeda.mp3","Ares.mp3","Ashes.mp3","Beast.mp3","Belial.mp3","Bizarre Dream.mp3","Blood Stain.mp3","Cerberus.mp3","Clandestine.mp3","Cursed.mp3","Dangerous.mp3","Dark Boom Bap - Void.mp3","Dark Knight.mp3","Diamond Cut.mp3","Engulfed By Madness.mp3","Ethereal Illusions.mp3","Expanded Perception.mp3","Final Boss.mp3","From The Darkness.mp3","Furious.mp3","Hallucinations.mp3","Haze.mp3","Headshot.mp3","Ice Box.mp3","Illusion of Choice.mp3","Infinite Dream.mp3","Infinite Labyrinth.mp3","Ira.mp3","Joker.mp3","Ketamine.mp3","Legacy.mp3","Machiavelli.mp3","Mad.mp3","Medusa.mp3","Melting Mind.mp3","Mente Rota.mp3","Millitia.mp3","Moloc.mp3","Money In Hand.mp3","Monster.mp3","Most Wanted.mp3","Mysterious-Force.mp3","Night Light.mp3","Night Plan.mp3","Not Easy.mp3","Orias.mp3","Ouroboros.mp3","Phantom Shadow.mp3","Rage.mp3","Ritual Night.mp3","Robbery.mp3","Roto.mp3","Smoke - Griselda.mp3","Smoke.mp3","Stolas.mp3","Subconscious.mp3","Tinta Negra.mp3","Transdimensional Picnic.mp3","True Grit.mp3","UFO Ride.mp3","Uncut Lines.mp3","Voices on My Head.mp3","Void.mp3","Walking Through Chaos.mp3","Witchcraft.mp3","illuminati.mp3"
+]);
+
+// Normalize beats: if a Boom Bap file is now under Dark Boom Bap, update its path and genre
+for (const beat of beats) {
+    if (typeof beat.file === 'string' && beat.file.startsWith('Boom Bap/')) {
+        const base = beat.file.substring('Boom Bap/'.length);
+        if (DARK_BOOM_BAP_FILES.has(base)) {
+            beat.file = `Dark Boom Bap/${base}`;
+            beat.genre = 'dark-boom-bap';
+        }
+    }
+}
+
 // Global variables
 let currentMode = 'beats'; // 'beats' or 'ideas'
 let currentData = beats;
@@ -208,7 +230,11 @@ function renderBeats() {
         const beatIndex = currentData.indexOf(beat);
         beatRow.innerHTML = `
             <div class="beat-title">${beat.name}</div>
-            <div class="beat-genre ${beat.genre}">${beat.genre}</div>
+            ${(() => { 
+                const g = beat.file && beat.file.startsWith('Dark Boom Bap/') ? 'dark-boom-bap' : beat.genre; 
+                const l = g === 'boom-bap' ? 'Boom Bap' : (g === 'dark-boom-bap' ? 'Dark Boom Bap' : g);
+                return `<div class=\"beat-genre ${g}\">${l}</div>`; 
+            })()}
             <div class="beat-duration" data-file="${beat.file}">Loading...</div>
             <div class="beat-size">${formatFileSize(beat.size)}</div>
             <button class="beat-play-btn" onclick="playBeat(${beatIndex})">
@@ -246,7 +272,8 @@ function processDurationQueue() {
 
         metadataConcurrency++;
         const folderPath = mode === 'beats' ? 'MP3' : 'Ideas';
-        const audio = new Audio(`${folderPath}/${file}`);
+        let attemptedAlt = false;
+        let audio = new Audio(`${folderPath}/${file}`);
         pendingDurationAudios.add(audio);
 
         const cleanup = () => {
@@ -263,14 +290,37 @@ function processDurationQueue() {
             cleanup();
         }, { once: true });
 
-        audio.addEventListener('error', function() {
-            // Cache zero to avoid retry storms
-            durationCache.set(file, 0);
+        // Fallback: if Boom Bap path fails, try Dark Boom Bap
+        audio.addEventListener('error', function onErr() {
+            if (!attemptedAlt && typeof file === 'string' && file.startsWith('Boom Bap/')) {
+                attemptedAlt = true;
+                audio.removeEventListener('error', onErr);
+                const altFile = file.replace('Boom Bap/', 'Dark Boom Bap/');
+                audio = new Audio(`${folderPath}/${altFile}`);
+                pendingDurationAudios.add(audio);
+                audio.addEventListener('loadedmetadata', function() {
+                    durationCache.set(file, audio.duration);
+                    if (document.body.contains(element)) {
+                        element.textContent = formatTime(audio.duration);
+                    }
+                    cleanup();
+                }, { once: true });
+                audio.addEventListener('error', () => {
+                    if (document.body.contains(element)) {
+                        element.textContent = '0:00';
+                    }
+                    cleanup();
+                }, { once: true });
+                audio.load();
+                return;
+            }
             if (document.body.contains(element)) {
                 element.textContent = '0:00';
             }
             cleanup();
         }, { once: true });
+
+        audio.load();
     }
 }
 
@@ -305,23 +355,34 @@ function playBeat(index) {
     const beat = currentData[currentBeatIndex];
     const folderPath = currentMode === 'beats' ? 'MP3' : 'Ideas';
     
-    audioElement.src = `${folderPath}/${beat.file}`;
+    // Primary source
+    let primaryPath = `${folderPath}/${beat.file}`;
+    let triedAlt = false;
+    audioElement.src = primaryPath;
     audioElement.load();
-    
+
     currentTrack.textContent = beat.name;
     updatePlayingState();
     
-    audioElement.play().then(() => {
+    const tryPlay = () => audioElement.play().then(() => {
         isPlaying = true;
         updatePlayButton();
         updateBeatCards();
     }).catch(error => {
+        // Fallback: try Dark Boom Bap if Boom Bap path fails
+        if (!triedAlt && typeof beat.file === 'string' && beat.file.startsWith('Boom Bap/')) {
+            triedAlt = true;
+            const altPath = `${folderPath}/${beat.file.replace('Boom Bap/', 'Dark Boom Bap/')}`;
+            audioElement.src = altPath;
+            audioElement.load();
+            return tryPlay();
+        }
         console.error('Error playing audio:', error);
-        // Show user-friendly error message
         currentTrack.textContent = 'Error loading audio file';
         isPlaying = false;
         updatePlayButton();
     });
+    tryPlay();
 }
 
 // Setup event listeners
@@ -474,7 +535,10 @@ function filterBeats() {
     
     filteredBeats = currentData.filter(beat => {
         const matchesSearch = beat.name.toLowerCase().includes(searchTerm);
-        const matchesCategory = !selectedCategory || beat.genre === selectedCategory;
+        const inDarkFolder = typeof beat.file === 'string' && beat.file.startsWith('Dark Boom Bap/');
+        const matchesCategory = !selectedCategory
+            || beat.genre === selectedCategory
+            || (selectedCategory === 'dark-boom-bap' && inDarkFolder);
         return matchesSearch && matchesCategory;
     });
     
@@ -559,6 +623,7 @@ function updateCategoryFilter() {
         categoryFilter.innerHTML = `
             <option value="">All Genres</option>
             <option value="boom-bap">Boom Bap</option>
+            <option value="dark-boom-bap">Dark Boom Bap</option>
             <option value="trap">Trap</option>
             <option value="drill">Drill</option>
             <option value="reggaeton">Reggaeton</option>
