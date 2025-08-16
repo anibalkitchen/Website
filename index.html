@@ -6,23 +6,33 @@
     <title>Anibal Kitchen - Beats Catalog</title>
     <script>
         (function(){
-            function setVersion(ver){
+            function inject(ver){
                 window.__BUILD_VERSION = ver;
-                // Inject CSS with version
+                // CSS
                 var css = document.createElement('link');
                 css.rel = 'stylesheet';
                 css.href = 'styles.css?v=' + encodeURIComponent(ver);
                 document.head.appendChild(css);
-                // Inject JS with version (defer so DOMContentLoaded in script.js still fires)
+                // JS (defer so DOMContentLoaded in script.js still fires)
                 var js = document.createElement('script');
                 js.src = 'script.js?v=' + encodeURIComponent(ver);
                 js.defer = true;
                 document.head.appendChild(js);
             }
-            fetch('version.txt', { cache: 'no-store' })
-                .then(function(r){ return r.ok ? r.text() : Promise.reject(); })
-                .then(function(t){ setVersion((t || '').trim() || Date.now().toString()); })
-                .catch(function(){ setVersion(Date.now().toString()); });
+            function withTimeout(p, ms){
+                return Promise.race([
+                    p,
+                    new Promise(function(_, rej){ setTimeout(function(){ rej(new Error('timeout')); }, ms); })
+                ]);
+            }
+            // Try to get version.txt quickly; if it delays, fall back immediately to timestamp
+            var fallbackVer = Date.now().toString();
+            withTimeout(fetch('version.txt', { cache: 'no-store' }).then(function(r){
+                if (!r.ok) throw new Error('no version');
+                return r.text();
+            }), 350)
+            .then(function(t){ var v = (t || '').trim(); inject(v || fallbackVer); })
+            .catch(function(){ inject(fallbackVer); });
         })();
     </script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">

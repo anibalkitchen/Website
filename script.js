@@ -710,3 +710,15 @@ audioElement.addEventListener('pause', () => {
     updatePlayButton();
     updateBeatCards();
 });
+
+// If the script loads after DOMContentLoaded (e.g., when injected dynamically),
+// initialize immediately to avoid the app getting stuck on "Loading beats...".
+if (document.readyState !== 'loading') {
+    try {
+        renderBeats();
+        setupEventListeners();
+        if (loading) loading.style.display = 'none';
+    } catch (e) {
+        console.error('Post-load init error:', e);
+    }
+}
