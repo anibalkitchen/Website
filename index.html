@@ -93,6 +93,20 @@
                     <option value="rock">Rock</option>
                 </select>
             </div>
+            <div class="filter-container">
+                <select id="sortOrder">
+                    <option value="default">Sort: Default</option>
+                    <option value="random">Random</option>
+                    <option value="az">A-Z</option>
+                    <option value="za">Z-A</option>
+                    <option value="newest">Newest</option>
+                    <option value="oldest">Oldest</option>
+                </select>
+            </div>
+            <button id="downloadBtn" class="download-btn" title="Download">
+                <i class="fas fa-download"></i>
+                <span>Download</span>
+            </button>
         </div>
 
         <!-- Audio Player - Compact -->
@@ -148,5 +162,27 @@
     </div>
 
     <audio id="audioElement" preload="metadata"></audio>
+
+    <!-- Download Modal -->
+    <div class="modal-overlay" id="downloadModal" aria-hidden="true">
+        <div class="modal" role="dialog" aria-modal="true" aria-labelledby="downloadTitle">
+            <button id="downloadClose" class="modal-close" aria-label="Close">
+                <i class="fas fa-times"></i>
+            </button>
+            <h2 id="downloadTitle">Get your Beat</h2>
+            <p class="modal-subtitle">Enter your email to receive the download link.</p>
+            <div class="modal-field">
+                <label for="downloadEmail">Email</label>
+                <input type="email" id="downloadEmail" placeholder="you@example.com" />
+            </div>
+            <div class="modal-field checkbox">
+                <input type="checkbox" id="downloadConsent" />
+                <label for="downloadConsent">I agree to receive promotional emails.</label>
+            </div>
+            <div class="modal-actions">
+                <button id="getBeatBtn" class="primary-btn">Get my Beat</button>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

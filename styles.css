@@ -280,6 +280,31 @@ body {
     cursor: pointer;
 }
 
+/* Download Button */
+.download-btn {
+    padding: 10px 16px;
+    background: linear-gradient(135deg, #ff6b6b 0%, #ff5252 100%);
+    border: none;
+    border-radius: 25px;
+    color: #fff;
+    font-weight: 600;
+    font-size: 0.95rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    box-shadow: 0 6px 18px rgba(255, 107, 107, 0.25);
+    transition: transform 0.15s ease, box-shadow 0.2s ease, filter 0.2s ease;
+}
+
+.download-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 10px 22px rgba(255, 107, 107, 0.35);
+    filter: brightness(1.05);
+}
+
+.download-btn i { font-size: 1rem; }
+
 .stats {
     color: #888;
     font-size: 0.9rem;
@@ -622,6 +647,11 @@ body {
         font-size: 0.9rem;
         padding: 8px 12px;
     }
+
+    .download-btn {
+        padding: 8px 12px;
+        font-size: 0.9rem;
+    }
     
     .header-actions {
         gap: 10px;
@@ -761,3 +791,115 @@ body {
 ::-webkit-scrollbar-thumb:hover {
     background: #555;
 }
+
+/* Modal */
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease;
+    z-index: 1000;
+}
+
+.modal-overlay.active {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.modal {
+    width: 90%;
+    max-width: 480px;
+    background: linear-gradient(135deg, #2a2a2a 0%, #1f1f1f 100%);
+    border: 1px solid #333;
+    border-radius: 16px;
+    padding: 20px 20px 22px;
+    position: relative;
+    box-shadow: 0 12px 40px rgba(0,0,0,0.5);
+}
+
+.modal h2 {
+    font-size: 1.2rem;
+    color: #fff;
+    margin-bottom: 6px;
+}
+
+.modal-subtitle {
+    color: #aaa;
+    font-size: 0.95rem;
+    margin-bottom: 14px;
+}
+
+.modal-field {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 14px;
+}
+
+.modal-field.checkbox {
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+}
+
+.modal-field label {
+    color: #ccc;
+    font-size: 0.9rem;
+}
+
+.modal-field input[type="email"] {
+    padding: 12px 14px;
+    background: #2a2a2a;
+    border: 1px solid #444;
+    border-radius: 10px;
+    color: #fff;
+    outline: none;
+    transition: border-color 0.2s ease;
+}
+
+.modal-field input[type="email"]:focus {
+    border-color: #ff6b6b;
+}
+
+.modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 6px;
+}
+
+.primary-btn {
+    padding: 10px 16px;
+    background: #4ecdc4;
+    color: #0d0d0d;
+    border: none;
+    border-radius: 10px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: filter 0.2s ease, transform 0.15s ease;
+}
+
+.primary-btn:hover {
+    filter: brightness(1.05);
+    transform: translateY(-1px);
+}
+
+.modal-close {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: transparent;
+    border: none;
+    color: #aaa;
+    font-size: 1.1rem;
+    cursor: pointer;
+    padding: 6px;
+    border-radius: 50%;
+    transition: background 0.2s ease, color 0.2s ease;
+}
+
+.modal-close:hover { color: #ff6b6b; background: rgba(255, 107, 107, 0.1); }

@@ -102,6 +102,11 @@ const beats = [
     { name: "Ira", file: "Dark Boom Bap/Ira.mp3", genre: "dark-boom-bap", size: 4603393 },
     { name: "Roto", file: "Dark Boom Bap/Roto.mp3", genre: "dark-boom-bap", size: 3903074 },
 
+    // Newly added
+    { name: "Demente", file: "Dark Boom Bap/Demente.mp3", genre: "dark-boom-bap", size: 2708357 },
+    { name: "Maldito", file: "Dark Boom Bap/Maldito.mp3", genre: "dark-boom-bap", size: 4499717 },
+    { name: "Sol Negro", file: "Dark Boom Bap/Sol Negro.mp3", genre: "dark-boom-bap", size: 3420199 },
+
     // Trap (25 beats)
     { name: "24/7", file: "Trap/24_7.mp3", genre: "trap", size: 3399600 },
     { name: "300", file: "Trap/300.mp3", genre: "trap", size: 2694433 },
@@ -163,7 +168,7 @@ const beats = [
 // Map Boom Bap -> Dark Boom Bap if file was moved
 // List of filenames present in `MP3/Dark Boom Bap/`
 const DARK_BOOM_BAP_FILES = new Set([
-    "100k Stack.mp3","7 Kilos.mp3","Abnormal Thoughts.mp3","Ain't Easy.mp3","Andromeda.mp3","Ares.mp3","Ashes.mp3","Beast.mp3","Belial.mp3","Bizarre Dream.mp3","Blood Stain.mp3","Cerberus.mp3","Clandestine.mp3","Cursed.mp3","Dangerous.mp3","Dark Boom Bap - Void.mp3","Dark Knight.mp3","Diamond Cut.mp3","Engulfed By Madness.mp3","Ethereal Illusions.mp3","Expanded Perception.mp3","Final Boss.mp3","From The Darkness.mp3","Furious.mp3","Hallucinations.mp3","Haze.mp3","Headshot.mp3","Ice Box.mp3","Illusion of Choice.mp3","Infinite Dream.mp3","Infinite Labyrinth.mp3","Ira.mp3","Joker.mp3","Ketamine.mp3","Legacy.mp3","Machiavelli.mp3","Mad.mp3","Medusa.mp3","Melting Mind.mp3","Mente Rota.mp3","Millitia.mp3","Moloc.mp3","Money In Hand.mp3","Monster.mp3","Most Wanted.mp3","Mysterious-Force.mp3","Night Light.mp3","Night Plan.mp3","Not Easy.mp3","Orias.mp3","Ouroboros.mp3","Phantom Shadow.mp3","Rage.mp3","Ritual Night.mp3","Robbery.mp3","Roto.mp3","Smoke - Griselda.mp3","Smoke.mp3","Stolas.mp3","Subconscious.mp3","Tinta Negra.mp3","Transdimensional Picnic.mp3","True Grit.mp3","UFO Ride.mp3","Uncut Lines.mp3","Voices on My Head.mp3","Void.mp3","Walking Through Chaos.mp3","Witchcraft.mp3","illuminati.mp3"
+    "100k Stack.mp3","7 Kilos.mp3","Abnormal Thoughts.mp3","Ain't Easy.mp3","Andromeda.mp3","Ares.mp3","Ashes.mp3","Beast.mp3","Belial.mp3","Bizarre Dream.mp3","Blood Stain.mp3","Cerberus.mp3","Clandestine.mp3","Cursed.mp3","Dangerous.mp3","Dark Boom Bap - Void.mp3","Dark Knight.mp3","Demente.mp3","Diamond Cut.mp3","Engulfed By Madness.mp3","Ethereal Illusions.mp3","Expanded Perception.mp3","Final Boss.mp3","From The Darkness.mp3","Furious.mp3","Hallucinations.mp3","Haze.mp3","Headshot.mp3","Ice Box.mp3","Illusion of Choice.mp3","Infinite Dream.mp3","Infinite Labyrinth.mp3","Ira.mp3","Joker.mp3","Ketamine.mp3","Legacy.mp3","Machiavelli.mp3","Mad.mp3","Maldito.mp3","Medusa.mp3","Melting Mind.mp3","Mente Rota.mp3","Millitia.mp3","Moloc.mp3","Money In Hand.mp3","Monster.mp3","Most Wanted.mp3","Mysterious-Force.mp3","Night Light.mp3","Night Plan.mp3","Not Easy.mp3","Orias.mp3","Ouroboros.mp3","Phantom Shadow.mp3","Rage.mp3","Ritual Night.mp3","Robbery.mp3","Roto.mp3","Smoke - Griselda.mp3","Smoke.mp3","Sol Negro.mp3","Stolas.mp3","Subconscious.mp3","Tinta Negra.mp3","Transdimensional Picnic.mp3","True Grit.mp3","UFO Ride.mp3","Uncut Lines.mp3","Voices on My Head.mp3","Void.mp3","Walking Through Chaos.mp3","Witchcraft.mp3","illuminati.mp3"
 ]);
 
 // Normalize beats: if a Boom Bap file is now under Dark Boom Bap, update its path and genre
@@ -184,6 +189,7 @@ let currentBeatIndex = 0;
 let isPlaying = false;
 let filteredBeats = [...beats];
 let audioElement = document.getElementById('audioElement');
+let currentSort = 'default'; // 'default' | 'random' | 'az' | 'za' | 'newest' | 'oldest'
 
 // Duration metadata loading control
 const durationCache = new Map(); // key: file path, value: seconds (number)
@@ -206,12 +212,32 @@ const progressBar = document.querySelector('.progress-bar');
 const volumeSlider = document.getElementById('volumeSlider');
 const searchInput = document.getElementById('searchInput');
 const categoryFilter = document.getElementById('categoryFilter');
+const sortOrder = document.getElementById('sortOrder');
 // const itemCount = document.getElementById('itemCount'); // Removed
 const beatsContainer = document.getElementById('beatsContainer');
 const loading = document.getElementById('loading');
 const searchToggle = document.getElementById('searchToggle');
 const searchOverlay = document.getElementById('searchOverlay');
 const searchClose = document.getElementById('searchClose');
+// Download modal elements
+const downloadBtn = document.getElementById('downloadBtn');
+const downloadModal = document.getElementById('downloadModal');
+const downloadClose = document.getElementById('downloadClose');
+const downloadEmail = document.getElementById('downloadEmail');
+const downloadConsent = document.getElementById('downloadConsent');
+const getBeatBtn = document.getElementById('getBeatBtn');
+
+// Cloud Function endpoint to save email
+// POST JSON: { email: string }
+const CLOUD_FUNCTION_URL = 'https://anibal-kitchen-mail-239123017172.northamerica-south1.run.app';
+
+// AddedAt map for newest/oldest sorting (extend as needed)
+// Use numeric timestamps for easy comparison
+const ADDED_AT = new Map([
+    ['Dark Boom Bap/Demente.mp3', 20250818223106],
+    ['Dark Boom Bap/Maldito.mp3', 20250818223106],
+    ['Dark Boom Bap/Sol Negro.mp3', 20250818223106]
+]);
 
 // Initialize the app
 document.addEventListener('DOMContentLoaded', function() {
@@ -414,10 +440,39 @@ function setupEventListeners() {
     searchClose.addEventListener('click', closeSearch);
     searchInput.addEventListener('input', filterBeats);
     
+    // Sorting functionality
+    if (sortOrder) {
+        sortOrder.addEventListener('change', function() {
+            currentSort = sortOrder.value || 'default';
+            // Re-apply sorting on current filtered set
+            applySort();
+            renderBeats();
+        });
+    }
+    
+    // Download modal functionality
+    if (downloadBtn && downloadModal) {
+        downloadBtn.addEventListener('click', openDownloadModal);
+    }
+    if (downloadClose) {
+        downloadClose.addEventListener('click', closeDownloadModal);
+    }
+    if (downloadModal) {
+        downloadModal.addEventListener('click', function(e) {
+            if (e.target === downloadModal) closeDownloadModal();
+        });
+    }
+    if (getBeatBtn) {
+        getBeatBtn.addEventListener('click', handleGetBeatClick);
+    }
+    
     // Close search on Escape key
     document.addEventListener('keydown', function(e) {
         if (e.key === 'Escape' && searchOverlay.classList.contains('active')) {
             closeSearch();
+        }
+        if (e.key === 'Escape' && downloadModal && downloadModal.classList.contains('active')) {
+            closeDownloadModal();
         }
     });
     
@@ -541,8 +596,38 @@ function filterBeats() {
             || (selectedCategory === 'dark-boom-bap' && inDarkFolder);
         return matchesSearch && matchesCategory;
     });
-    
+    applySort();
     renderBeats();
+}
+
+// Apply sorting to filteredBeats based on currentSort
+function applySort() {
+    switch (currentSort) {
+        case 'random':
+            // Fisher-Yates shuffle (in-place)
+            for (let i = filteredBeats.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [filteredBeats[i], filteredBeats[j]] = [filteredBeats[j], filteredBeats[i]];
+            }
+            break;
+        case 'az':
+            filteredBeats.sort((a, b) => a.name.localeCompare(b.name));
+            break;
+        case 'za':
+            filteredBeats.sort((a, b) => b.name.localeCompare(a.name));
+            break;
+        case 'newest':
+            filteredBeats.sort((a, b) => (ADDED_AT.get(b.file) || 0) - (ADDED_AT.get(a.file) || 0));
+            break;
+        case 'oldest':
+            filteredBeats.sort((a, b) => (ADDED_AT.get(a.file) || 0) - (ADDED_AT.get(b.file) || 0));
+            break;
+        case 'default':
+        default:
+            // Keep original order as defined in currentData
+            filteredBeats.sort((a, b) => currentData.indexOf(a) - currentData.indexOf(b));
+            break;
+    }
 }
 
 // Toggle between beats and ideas mode
@@ -587,7 +672,7 @@ function toggleMode() {
     searchInput.value = '';
     if (categoryFilter) categoryFilter.value = '';
     filteredBeats = [...currentData];
-    
+    applySort();
     renderBeats();
     
     // Update track info
@@ -613,6 +698,77 @@ function openSearch() {
 function closeSearch() {
     searchOverlay.classList.remove('active');
     // Don't clear search input to maintain search state
+}
+
+// Open Download modal
+function openDownloadModal() {
+    if (!downloadModal) return;
+    downloadModal.classList.add('active');
+    downloadModal.setAttribute('aria-hidden', 'false');
+    // Focus email input after small delay to allow animation
+    setTimeout(() => { if (downloadEmail) downloadEmail.focus(); }, 150);
+}
+
+// Close Download modal
+function closeDownloadModal() {
+    if (!downloadModal) return;
+    downloadModal.classList.remove('active');
+    downloadModal.setAttribute('aria-hidden', 'true');
+}
+
+// Validate email string
+function isValidEmail(email) {
+    if (!email) return false;
+    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return re.test(email);
+}
+
+// Handle Get my Beat button
+async function handleGetBeatClick() {
+    const email = (downloadEmail && downloadEmail.value || '').trim();
+    const consent = downloadConsent ? downloadConsent.checked : false;
+    if (!isValidEmail(email)) {
+        alert('Please enter a valid email address.');
+        if (downloadEmail) downloadEmail.focus();
+        return;
+    }
+    if (!consent) {
+        alert('Please accept promotional emails.');
+        return;
+    }
+
+    // Disable button while sending
+    const originalText = getBeatBtn ? getBeatBtn.textContent : '';
+    if (getBeatBtn) {
+        getBeatBtn.disabled = true;
+        getBeatBtn.textContent = 'Sending...';
+    }
+
+    try {
+        const resp = await fetch(CLOUD_FUNCTION_URL, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email }),
+            mode: 'cors',
+        });
+        const text = await resp.text();
+        if (!resp.ok) {
+            throw new Error(text || `Request failed (${resp.status})`);
+        }
+
+        const beat = currentData && currentData[currentBeatIndex];
+        const beatName = beat && beat.name ? beat.name : 'selected';
+        alert(`Success! ${text || 'Email saved.'}\nThe beat "${beatName}" will be sent to your email.`);
+        closeDownloadModal();
+    } catch (err) {
+        console.error('Error saving email:', err);
+        alert(`There was a problem saving your email.\n${(err && err.message) || err}`);
+    } finally {
+        if (getBeatBtn) {
+            getBeatBtn.disabled = false;
+            getBeatBtn.textContent = originalText || 'Get my Beat';
+        }
+    }
 }
 
 // Update category filter options
