@@ -203,7 +203,7 @@ let currentSort = 'default'; // 'default' | 'random' | 'az' | 'za' | 'newest' | 
 // Duration metadata loading control
 const durationCache = new Map(); // key: file path, value: seconds (number)
 let metadataConcurrency = 0;
-const MAX_METADATA_CONCURRENCY = 5;
+const MAX_METADATA_CONCURRENCY = 2;
 const durationQueue = []; // queue of { file, element, mode }
 const pendingDurationAudios = new Set(); // active Audio objects for cancellation
 
@@ -236,6 +236,16 @@ const downloadEmail = document.getElementById('downloadEmail');
 const downloadConsent = document.getElementById('downloadConsent');
 const getBeatBtn = document.getElementById('getBeatBtn');
 
+// Lazy rendering & metadata observers
+const PAGE_SIZE = 50;
+let renderOffset = 0;
+let durationObserver = null; // IntersectionObserver for durations
+let sentinelObserver = null; // IntersectionObserver for infinite scroll
+const infiniteSentinel = document.createElement('div');
+infiniteSentinel.id = 'infiniteSentinel';
+infiniteSentinel.style.height = '1px';
+infiniteSentinel.style.margin = '0';
+
 // Cloud Function endpoint to save email
 // POST JSON: { email: string }
 const CLOUD_FUNCTION_URL = 'https://anibal-kitchen-mail-239123017172.northamerica-south1.run.app';
@@ -250,6 +260,11 @@ const ADDED_AT = new Map([
 
 // Initialize the app
 document.addEventListener('DOMContentLoaded', function() {
+    // place sentinel after list container
+    if (beatsContainer && beatsContainer.parentNode) {
+        beatsContainer.parentNode.appendChild(infiniteSentinel);
+    }
+    createObservers();
     renderBeats();
     setupEventListeners();
     loading.style.display = 'none';
@@ -257,9 +272,16 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Render beats list
 function renderBeats() {
+    // Reset container and state
     beatsContainer.innerHTML = '';
-    
-    filteredBeats.forEach((beat, index) => {
+    renderOffset = 0;
+    // Render first batch
+    renderNextBatch();
+}
+
+function renderNextBatch() {
+    const slice = filteredBeats.slice(renderOffset, renderOffset + PAGE_SIZE);
+    slice.forEach((beat) => {
         const beatRow = document.createElement('div');
         beatRow.className = 'beat-row';
         const beatIndex = currentData.indexOf(beat);
@@ -270,17 +292,50 @@ function renderBeats() {
                 const l = g === 'boom-bap' ? 'Boom Bap' : (g === 'dark-boom-bap' ? 'Dark Boom Bap' : g);
                 return `<div class=\"beat-genre ${g}\">${l}</div>`; 
             })()}
-            <div class="beat-duration" data-file="${beat.file}">Loading...</div>
+            <div class="beat-duration" data-file="${beat.file}">—</div>
             <div class="beat-size">${formatFileSize(beat.size)}</div>
             <button class="beat-play-btn" onclick="playBeat(${beatIndex})">
                 <i class="fas fa-play"></i>
             </button>
         `;
         beatsContainer.appendChild(beatRow);
-        
-        // Load duration asynchronously (queued with concurrency + cache)
-        loadBeatDuration(beat.file, beatRow.querySelector('.beat-duration'));
+        const durEl = beatRow.querySelector('.beat-duration');
+        if (durationObserver && durEl) durationObserver.observe(durEl);
     });
+    renderOffset += slice.length;
+    // Manage sentinel
+    if (renderOffset < filteredBeats.length) {
+        if (sentinelObserver) sentinelObserver.observe(infiniteSentinel);
+    } else {
+        if (sentinelObserver) sentinelObserver.unobserve(infiniteSentinel);
+    }
+}
+
+function createObservers() {
+    // Observer for durations (lazy load when visible)
+    if (durationObserver) durationObserver.disconnect();
+    durationObserver = new IntersectionObserver((entries) => {
+        for (const entry of entries) {
+            if (entry.isIntersecting) {
+                const el = entry.target;
+                const file = el && el.getAttribute('data-file');
+                if (file) {
+                    loadBeatDuration(file, el);
+                }
+                durationObserver.unobserve(el);
+            }
+        }
+    }, { root: null, rootMargin: '200px 0px', threshold: 0.01 });
+
+    // Observer for infinite scroll sentinel
+    if (sentinelObserver) sentinelObserver.disconnect();
+    sentinelObserver = new IntersectionObserver((entries) => {
+        for (const entry of entries) {
+            if (entry.isIntersecting) {
+                renderNextBatch();
+            }
+        }
+    }, { root: null, rootMargin: '400px 0px', threshold: 0 });
 }
 
 // Load beat duration
@@ -682,6 +737,8 @@ function toggleMode() {
     if (categoryFilter) categoryFilter.value = '';
     filteredBeats = [...currentData];
     applySort();
+    // Reset observers and re-render in batches
+    createObservers();
     renderBeats();
     
     // Update track info
