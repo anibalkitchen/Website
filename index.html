@@ -6,33 +6,15 @@
     <title>Anibal Kitchen - Beats Catalog</title>
     <script>
         (function(){
-            function inject(ver){
-                window.__BUILD_VERSION = ver;
-                // CSS
-                var css = document.createElement('link');
-                css.rel = 'stylesheet';
-                css.href = 'styles.css?v=' + encodeURIComponent(ver);
-                document.head.appendChild(css);
-                // JS (defer so DOMContentLoaded in script.js still fires)
-                var js = document.createElement('script');
-                js.src = 'script.js?v=' + encodeURIComponent(ver);
-                js.defer = true;
-                document.head.appendChild(js);
-            }
-            function withTimeout(p, ms){
-                return Promise.race([
-                    p,
-                    new Promise(function(_, rej){ setTimeout(function(){ rej(new Error('timeout')); }, ms); })
-                ]);
-            }
-            // Try to get version.txt quickly; if it delays, fall back immediately to timestamp
-            var fallbackVer = Date.now().toString();
-            withTimeout(fetch('version.txt', { cache: 'no-store' }).then(function(r){
-                if (!r.ok) throw new Error('no version');
-                return r.text();
-            }), 350)
-            .then(function(t){ var v = (t || '').trim(); inject(v || fallbackVer); })
-            .catch(function(){ inject(fallbackVer); });
+            var ts = Date.now().toString();
+            var css = document.createElement('link');
+            css.rel = 'stylesheet';
+            css.href = 'styles.css?t=' + ts;
+            document.head.appendChild(css);
+            var js = document.createElement('script');
+            js.src = 'script.js?t=' + ts;
+            js.defer = true;
+            document.head.appendChild(js);
         })();
     </script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -93,6 +75,20 @@
                     <option value="rock">Rock</option>
                 </select>
             </div>
+            <div class="filter-container">
+                <select id="sortOrder">
+                    <option value="default">Sort: Default</option>
+                    <option value="random">Random</option>
+                    <option value="az">A-Z</option>
+                    <option value="za">Z-A</option>
+                    <option value="newest">Newest</option>
+                    <option value="oldest">Oldest</option>
+                </select>
+            </div>
+            <button id="downloadBtn" class="download-btn" title="Download">
+                <i class="fas fa-download"></i>
+                <span>Download</span>
+            </button>
         </div>
 
         <!-- Audio Player - Compact -->
@@ -148,5 +144,28 @@
     </div>
 
     <audio id="audioElement" preload="metadata"></audio>
+
+    <!-- Download Modal -->
+    <div class="modal-overlay" id="downloadModal" aria-hidden="true">
+        <div class="modal" role="dialog" aria-modal="true" aria-labelledby="downloadTitle">
+            <button id="downloadClose" class="modal-close" aria-label="Close">
+                <i class="fas fa-times"></i>
+            </button>
+            <h2 id="downloadTitle">Get your Beat</h2>
+            <p class="modal-subtitle">Enter your email to receive the download link.</p>
+            <div class="modal-field">
+                <label for="downloadEmail">Email</label>
+                <input type="email" id="downloadEmail" placeholder="you@example.com" />
+            </div>
+            <div class="modal-field checkbox">
+                <input type="checkbox" id="downloadConsent" />
+                <label for="downloadConsent">I agree to receive promotional emails.</label>
+            </div>
+            <div class="modal-actions">
+                <button id="getBeatBtn" class="primary-btn">Get my Beat</button>
+            </div>
+        </div>
+    </div>
+    
 </body>
 </html>
