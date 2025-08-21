@@ -236,16 +236,6 @@ const downloadEmail = document.getElementById('downloadEmail');
 const downloadConsent = document.getElementById('downloadConsent');
 const getBeatBtn = document.getElementById('getBeatBtn');
 
-// Lazy rendering & metadata observers
-const PAGE_SIZE = 50;
-let renderOffset = 0;
-let durationObserver = null; // IntersectionObserver for durations
-let sentinelObserver = null; // IntersectionObserver for infinite scroll
-const infiniteSentinel = document.createElement('div');
-infiniteSentinel.id = 'infiniteSentinel';
-infiniteSentinel.style.height = '1px';
-infiniteSentinel.style.margin = '0';
-
 // Cloud Function endpoint to save email
 // POST JSON: { email: string }
 const CLOUD_FUNCTION_URL = 'https://anibal-kitchen-mail-239123017172.northamerica-south1.run.app';

@@ -904,8 +904,7 @@ body {
 
 .modal-close:hover { color: #ff6b6b; background: rgba(255, 107, 107, 0.1); }
 
-/* --- Temporarily hide download UI (button + modal) until backend/domain are ready --- */
-#downloadBtn,
-#downloadModal { 
-    display: none !important; 
+/* Keep only the modal hidden */
+#downloadModal {
+    display: none !important;
 }
