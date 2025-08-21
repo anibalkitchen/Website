@@ -207,6 +207,15 @@ const MAX_METADATA_CONCURRENCY = 2;
 const durationQueue = []; // queue of { file, element, mode }
 const pendingDurationAudios = new Set(); // active Audio objects for cancellation
 
+// Lazy rendering & metadata observers
+const PAGE_SIZE = 50;
+let renderOffset = 0;
+let durationObserver = null;
+let sentinelObserver = null;
+// Infinite scroll sentinel element
+const infiniteSentinel = document.createElement('div');
+infiniteSentinel.style.height = '1px';
+
 // DOM elements
 const modeSwitch = document.getElementById('modeSwitch');
 const genreHeader = document.getElementById('genreHeader');
