@@ -188,8 +188,8 @@ function encodePath(p) {
     return p.split('/').map(encodeURIComponent).join('/');
 }
 
-// Global timestamp for cache-busting of assets during this session
-const CACHE_TS = Date.now().toString();
+// Global build token for cache-busting (provided by index.html loader)
+const BUILD_TOKEN = (typeof window !== 'undefined' && window.__BUILD_VERSION) ? String(window.__BUILD_VERSION) : Date.now().toString();
 
 // Global variables
 let currentMode = 'beats'; // 'beats' or 'ideas'
@@ -363,7 +363,7 @@ function processDurationQueue() {
         metadataConcurrency++;
         const folderPath = mode === 'beats' ? 'MP3' : 'Ideas';
         let attemptedAlt = false;
-        let audio = new Audio(encodePath(`${folderPath}/${file}`) + `?t=${CACHE_TS}`);
+        let audio = new Audio(encodePath(`${folderPath}/${file}`) + `?v=${BUILD_TOKEN}`);
         pendingDurationAudios.add(audio);
 
         const cleanup = () => {
@@ -386,7 +386,7 @@ function processDurationQueue() {
                 attemptedAlt = true;
                 audio.removeEventListener('error', onErr);
                 const altFile = file.replace('Boom Bap/', 'Dark Boom Bap/');
-                audio = new Audio(encodePath(`${folderPath}/${altFile}`) + `?t=${CACHE_TS}`);
+                audio = new Audio(encodePath(`${folderPath}/${altFile}`) + `?v=${BUILD_TOKEN}`);
                 pendingDurationAudios.add(audio);
                 audio.addEventListener('loadedmetadata', function() {
                     durationCache.set(file, audio.duration);
@@ -446,7 +446,7 @@ function playBeat(index) {
     const folderPath = currentMode === 'beats' ? 'MP3' : 'Ideas';
     
     // Primary source
-    let primaryPath = encodePath(`${folderPath}/${beat.file}`) + `?t=${CACHE_TS}`;
+    let primaryPath = encodePath(`${folderPath}/${beat.file}`) + `?v=${BUILD_TOKEN}`;
     let triedAlt = false;
     audioElement.src = primaryPath;
     audioElement.load();
@@ -462,7 +462,7 @@ function playBeat(index) {
         // Fallback: try Dark Boom Bap if Boom Bap path fails
         if (!triedAlt && typeof beat.file === 'string' && beat.file.startsWith('Boom Bap/')) {
             triedAlt = true;
-            const altPath = encodePath(`${folderPath}/${beat.file.replace('Boom Bap/', 'Dark Boom Bap/')}`) + `?t=${CACHE_TS}`;
+            const altPath = encodePath(`${folderPath}/${beat.file.replace('Boom Bap/', 'Dark Boom Bap/')}`) + `?v=${BUILD_TOKEN}`;
             audioElement.src = altPath;
             audioElement.load();
             return tryPlay();

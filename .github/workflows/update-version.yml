@@ -1,11 +1,38 @@
-name: Disabled Workflow
+name: Update version.txt on push
 
 on:
-  workflow_dispatch:
+  push:
+    branches:
+      - main
+      - master
+
+permissions:
+  contents: write
 
 jobs:
-  noop:
+  bump-version:
+    if: ${{ !contains(github.event.head_commit.message, '[skip ci]') }}
     runs-on: ubuntu-latest
     steps:
-      - name: No operation
-        run: echo "This workflow is disabled."
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set git user
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+      - name: Update version.txt with UTC timestamp
+        run: |
+          TS=$(date -u +"%Y%m%d%H%M%S")
+          echo "$TS" > version.txt
+
+      - name: Commit changes
+        run: |
+          if git diff --quiet; then
+            echo "No changes to commit"
+          else
+            git add version.txt
+            git commit -m "chore: bump version.txt to $TS [skip ci]" || true
+            git push
+          fi
