@@ -164,7 +164,141 @@ else
     fi
 fi
 
-# 6. Push a GitHub
+# 6. Pull remote changes first to avoid conflicts
+echo "⬇️  Verificando cambios remotos..."
+git fetch origin main
+
+# Check if there are remote changes
+if ! git diff --quiet HEAD origin/main; then
+    echo "🔄 Cambios remotos detectados, haciendo pull..."
+    git pull origin main
+    
+    # Check if there are merge conflicts
+    if [ $? -ne 0 ]; then
+        echo "⚠️  Conflictos de merge detectados. Resolviendo automáticamente..."
+        
+        # Accept remote changes for key files and re-sync
+        git checkout --theirs script.js styles.css version.txt 2>/dev/null || true
+        
+        # Re-run sync after resolving conflicts
+        echo "🔄 Re-sincronizando después de resolver conflictos..."
+        python3 -c "
+import os
+import json
+import re
+
+def get_file_size(filepath):
+    try:
+        return os.path.getsize(filepath)
+    except OSError:
+        return 0
+
+def scan_directory(base_path, folder_name):
+    folder_path = os.path.join(base_path, folder_name)
+    files = []
+    
+    if not os.path.exists(folder_path):
+        return files
+    
+    for root, dirs, filenames in os.walk(folder_path):
+        for filename in filenames:
+            if filename.endswith('.mp3'):
+                full_path = os.path.join(root, filename)
+                relative_path = os.path.relpath(full_path, base_path)
+                file_path = relative_path.replace(os.sep, '/')
+                
+                name = os.path.splitext(filename)[0]
+                size = get_file_size(full_path)
+                
+                subfolder = os.path.basename(root)
+                genre_map = {
+                    'Boom Bap': 'boom-bap',
+                    'Dark Boom Bap': 'dark-boom-bap',
+                    'Trap': 'trap',
+                    'Drill': 'drill',
+                    'Electronic': 'electronic',
+                    'Agosto': 'agosto'
+                }
+                genre = genre_map.get(subfolder, subfolder.lower().replace(' ', '-'))
+                
+                files.append({
+                    'name': name,
+                    'file': file_path,
+                    'genre': genre,
+                    'size': size
+                })
+    
+    return files
+
+# Escanear archivos
+mp3_files = scan_directory('.', 'MP3')
+ideas_files = scan_directory('.', 'Ideas')
+
+# Leer script.js actual
+with open('script.js', 'r', encoding='utf-8') as f:
+    content = f.read()
+
+# Generar nuevos datos
+import datetime
+timestamp = datetime.datetime.now().isoformat()
+
+# Ideas data
+ideas_js = '// Ideas data - organized by month folders (Ideas)\nconst ideasData = [\n'
+ideas_js += f'    // Generado automáticamente - {timestamp}\n'
+for file in sorted(ideas_files, key=lambda x: x['name']):
+    ideas_js += f'    {{ name: \"{file[\"name\"]}\", file: \"{file[\"file\"]}\", genre: \"{file[\"genre\"]}\", size: {file[\"size\"]} }},\n'
+ideas_js += '];\n'
+
+# Beats data
+beats_js = '// Beats data - organized by folder structure\nconst beats = [\n'
+beats_js += f'    // Generado automáticamente - {timestamp}\n'
+
+all_beats = [f for f in mp3_files if f['genre'] != 'agosto']
+for file in sorted(all_beats, key=lambda x: x['name']):
+    beats_js += f'    {{ name: \"{file[\"name\"]}\", file: \"{file[\"file\"]}\", genre: \"{file[\"genre\"]}\", size: {file[\"size\"]} }},\n'
+beats_js += '];\n'
+
+# DARK_BOOM_BAP_FILES set
+dark_boom_bap_files = [f for f in mp3_files if f['genre'] == 'dark-boom-bap']
+dark_files_set = 'const DARK_BOOM_BAP_FILES = new Set([\n'
+for file in sorted(dark_boom_bap_files, key=lambda x: x['name']):
+    filename = os.path.basename(file['file'])
+    dark_files_set += f'    \"{filename}\",\n'
+dark_files_set += ']);\n'
+
+# Reemplazar en script.js
+import re
+
+# Reemplazar ideas data
+ideas_pattern = r'// Ideas data.*?\];'
+content = re.sub(ideas_pattern, ideas_js.rstrip(), content, flags=re.DOTALL)
+
+# Reemplazar beats data
+beats_pattern = r'// Beats data.*?\];'
+content = re.sub(beats_pattern, beats_js.rstrip(), content, flags=re.DOTALL)
+
+# Reemplazar DARK_BOOM_BAP_FILES
+dark_pattern = r'const DARK_BOOM_BAP_FILES = new Set\(\[.*?\]\);'
+content = re.sub(dark_pattern, dark_files_set.rstrip(), content, flags=re.DOTALL)
+
+# Escribir archivo actualizado
+with open('script.js', 'w', encoding='utf-8') as f:
+    f.write(content)
+
+print('   ✅ Re-sincronización completada')
+"
+        
+        # Update version again
+        NEW_VERSION=$(date +"%Y%m%d%H%M%S")
+        echo "$NEW_VERSION" > version.txt
+        
+        # Add resolved files and commit
+        git add script.js version.txt styles.css
+        git commit -m "Resolve merge conflicts and re-sync database - $NEW_VERSION"
+    fi
+fi
+
+# 7. Push a GitHub
 echo "⬆️  Haciendo push a GitHub..."
 git push origin main
 
