@@ -62,9 +62,8 @@ def get_all_mp3_files(directory, base_dir=''):
             name = os.path.splitext(item)[0]
             size = os.path.getsize(full_path)
             
-            # Determinar género
-            parts = relative_path.split('/')
-            folder = parts[0] if parts else ''
+            # Determinar género - usar el nombre de la carpeta directa
+            folder = os.path.basename(os.path.dirname(full_path))
             genre = GENRE_MAPPING.get(folder, 'unknown')
             
             files.append({
@@ -205,7 +204,12 @@ def scan_directory(base_path, folder_name):
             if filename.endswith('.mp3'):
                 full_path = os.path.join(root, filename)
                 relative_path = os.path.relpath(full_path, base_path)
-                file_path = relative_path.replace(os.sep, '/')
+                # Remove the base folder name (MP3/ or Ideas/) from the path
+                path_parts = relative_path.replace(os.sep, '/').split('/')
+                if len(path_parts) > 1:
+                    file_path = '/'.join(path_parts[1:])  # Remove first part (MP3 or Ideas)
+                else:
+                    file_path = relative_path.replace(os.sep, '/')
                 
                 name = os.path.splitext(filename)[0]
                 size = get_file_size(full_path)
@@ -217,6 +221,9 @@ def scan_directory(base_path, folder_name):
                     'Trap': 'trap',
                     'Drill': 'drill',
                     'Electronic': 'electronic',
+                    'Reggaeton': 'reggaeton',
+                    'Rage': 'rage',
+                    'Rock': 'rock',
                     'Agosto': 'agosto'
                 }
                 genre = genre_map.get(subfolder, subfolder.lower().replace(' ', '-'))
