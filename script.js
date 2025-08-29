@@ -1,174 +1,248 @@
 // Ideas data - organized by month folders (Ideas)
 const ideasData = [
-    // Agosto (3 ideas)
-    { name: "Boom Bap - Agosto 10 - 2025 - Idea", file: "Agosto/Boom Bap - Agosto 10 - 2025 - Idea.mp3", genre: "agosto", size: 3376320 },
-    { name: "Idea 1 - Agosto 11 - 2025", file: "Agosto/Idea 1 - Agosto 11 - 2025.mp3", genre: "agosto", size: 3064320 },
-    { name: "Idea 2 - Agosto 11 - 2025", file: "Agosto/Idea 2 - Agosto 11 - 2025.mp3", genre: "agosto", size: 3563520 }
+    // Generado automáticamente - 2025-08-29T00:58:36.524462
+    { name: "Boom Bap - Agosto 10 - 2025 - Idea", file: "Ideas/Agosto/Boom Bap - Agosto 10 - 2025 - Idea.mp3", genre: "agosto", size: 3376320 },
+    { name: "Idea 1 - Agosto 11 - 2025", file: "Ideas/Agosto/Idea 1 - Agosto 11 - 2025.mp3", genre: "agosto", size: 3064320 },
+    { name: "Idea 2 - Agosto 11 - 2025", file: "Ideas/Agosto/Idea 2 - Agosto 11 - 2025.mp3", genre: "agosto", size: 3563520 },
 ];
 
 // Beats data - organized by folder structure
 const beats = [
-    // Boom Bap (87 beats)
-    { name: "100k Stack", file: "Boom Bap/100k Stack.mp3", genre: "boom-bap", size: 4003400 },
-    { name: "7 Kilos", file: "Boom Bap/7 Kilos.mp3", genre: "boom-bap", size: 4291397 },
-    { name: "Abnormal Thoughts", file: "Boom Bap/Abnormal Thoughts.mp3", genre: "boom-bap", size: 4940367 },
-    { name: "Ain't Easy", file: "Boom Bap/Ain't Easy.mp3", genre: "boom-bap", size: 3854600 },
-    { name: "Ares", file: "Boom Bap/Ares.mp3", genre: "boom-bap", size: 3246434 },
-    { name: "Ashes", file: "Boom Bap/Ashes.mp3", genre: "boom-bap", size: 4069155 },
-    { name: "At Night", file: "Boom Bap/At Night.mp3", genre: "boom-bap", size: 3654918 },
-    { name: "Beast", file: "Boom Bap/Beast.mp3", genre: "boom-bap", size: 3730755 },
-    { name: "Belial", file: "Boom Bap/Belial.mp3", genre: "boom-bap", size: 3690916 },
-    { name: "Bizarre Dream", file: "Boom Bap/Bizarre Dream.mp3", genre: "boom-bap", size: 4269803 },
-    { name: "Block Party Blues", file: "Boom Bap/Block Party Blues.mp3", genre: "boom-bap", size: 4389327 },
-    { name: "Blood Stain", file: "Boom Bap/Blood Stain.mp3", genre: "boom-bap", size: 3894441 },
-    { name: "Cashing Out", file: "Boom Bap/Cashing Out.mp3", genre: "boom-bap", size: 3686601 },
-    { name: "Cerberus", file: "Boom Bap/Cerberus.mp3", genre: "boom-bap", size: 4417158 },
-    { name: "Clandestine", file: "Boom Bap/Clandestine.mp3", genre: "boom-bap", size: 3903081 },
-    { name: "Cursed", file: "Boom Bap/Cursed.mp3", genre: "boom-bap", size: 4947556 },
-    { name: "Dangerous", file: "Boom Bap/Dangerous.mp3", genre: "boom-bap", size: 4195399 },
-    { name: "Dark Boom Bap - Void", file: "Boom Bap/Dark Boom Bap - Void.mp3", genre: "boom-bap", size: 4203090 },
-    { name: "Dark Knight", file: "Boom Bap/Dark Knight.mp3", genre: "boom-bap", size: 4311081 },
-    { name: "Dark Times", file: "Boom Bap/Dark Times.mp3", genre: "boom-bap", size: 3353960 },
-    { name: "Diamond Cut", file: "Boom Bap/Diamond Cut.mp3", genre: "boom-bap", size: 3858441 },
-    { name: "Echoes of Yesterday", file: "Boom Bap/Echoes of Yesterday.mp3", genre: "boom-bap", size: 3904529 },
-    { name: "El Barrio", file: "Boom Bap/El Barrio.mp3", genre: "boom-bap", size: 3664039 },
-    { name: "Engulfed By Madness", file: "Boom Bap/Engulfed By Madness.mp3", genre: "boom-bap", size: 3814289 },
-    { name: "Ethereal Illusions", file: "Boom Bap/Ethereal Illusions.mp3", genre: "boom-bap", size: 4744528 },
-    { name: "Expanded Perception", file: "Boom Bap/Expanded Perception.mp3", genre: "boom-bap", size: 4536689 },
-    { name: "Faded Page", file: "Boom Bap/Faded Page.mp3", genre: "boom-bap", size: 3886280 },
-    { name: "Fate", file: "Boom Bap/Fate.mp3", genre: "boom-bap", size: 3007394 },
-    { name: "Final Boss", file: "Boom Bap/Final Boss.mp3", genre: "boom-bap", size: 4031240 },
-    { name: "From The Darkness", file: "Boom Bap/From The Darkness.mp3", genre: "boom-bap", size: 4283247 },
-    { name: "Furious", file: "Boom Bap/Furious.mp3", genre: "boom-bap", size: 2930117 },
-    { name: "Gucci", file: "Boom Bap/Gucci.mp3", genre: "boom-bap", size: 4249635 },
-    { name: "Hallucinations", file: "Boom Bap/Hallucinations.mp3", genre: "boom-bap", size: 3550284 },
-    { name: "Hard Life", file: "Boom Bap/Hard Life.mp3", genre: "boom-bap", size: 3637639 },
-    { name: "Haze", file: "Boom Bap/Haze.mp3", genre: "boom-bap", size: 3443714 },
-    { name: "Headshot", file: "Boom Bap/Headshot.mp3", genre: "boom-bap", size: 4735878 },
-    { name: "Heaven And Hell", file: "Boom Bap/Heaven And Hell.mp3", genre: "boom-bap", size: 4501165 },
-    { name: "Ice Box", file: "Boom Bap/Ice Box.mp3", genre: "boom-bap", size: 4304837 },
-    { name: "Illusion of Choice", file: "Boom Bap/Illusion of Choice.mp3", genre: "boom-bap", size: 4203088 },
-    { name: "Impala", file: "Boom Bap/Impala.mp3", genre: "boom-bap", size: 3129796 },
-    { name: "Infinite Dream", file: "Boom Bap/Infinite Dream.mp3", genre: "boom-bap", size: 3521004 },
-    { name: "Infinite Labyrinth", file: "Boom Bap/Infinite Labyrinth.mp3", genre: "boom-bap", size: 3939088 },
-    { name: "Joker", file: "Boom Bap/Joker.mp3", genre: "boom-bap", size: 3120195 },
-    { name: "Ketamine", file: "Boom Bap/Ketamine.mp3", genre: "boom-bap", size: 4003398 },
-    { name: "King", file: "Boom Bap/King.mp3", genre: "boom-bap", size: 2612834 },
-    { name: "Legacy", file: "Boom Bap/Legacy.mp3", genre: "boom-bap", size: 4096516 },
-    { name: "Machiavelli", file: "Boom Bap/Machiavelli.mp3", genre: "boom-bap", size: 4181961 },
-    { name: "Mad", file: "Boom Bap/Mad.mp3", genre: "boom-bap", size: 3858433 },
-    { name: "Medusa", file: "Boom Bap/Medusa.mp3", genre: "boom-bap", size: 4281316 },
-    { name: "Melting Mind", file: "Boom Bap/Melting Mind.mp3", genre: "boom-bap", size: 4205482 },
-    { name: "Mente Rota", file: "Boom Bap/Mente Rota.mp3", genre: "boom-bap", size: 3961160 },
-    { name: "Midnight", file: "Boom Bap/Midnight.mp3", genre: "boom-bap", size: 3880038 },
-    { name: "Millitia", file: "Boom Bap/Millitia.mp3", genre: "boom-bap", size: 3157638 },
-    { name: "Mind State", file: "Boom Bap/Mind State.mp3", genre: "boom-bap", size: 3724520 },
-    { name: "Moloc", file: "Boom Bap/Moloc.mp3", genre: "boom-bap", size: 3946755 },
-    { name: "Money In Hand", file: "Boom Bap/Money In Hand.mp3", genre: "boom-bap", size: 3683243 },
-    { name: "Monster", file: "Boom Bap/Monster.mp3", genre: "boom-bap", size: 4291397 },
-    { name: "Most Wanted", file: "Boom Bap/Most Wanted.mp3", genre: "boom-bap", size: 3663561 },
-    { name: "Mysterious Force", file: "Boom Bap/Mysterious-Force.mp3", genre: "boom-bap", size: 4003406 },
-    { name: "Night Light", file: "Boom Bap/Night Light.mp3", genre: "boom-bap", size: 3624681 },
-    { name: "Night Plan", file: "Boom Bap/Night Plan.mp3", genre: "boom-bap", size: 3647720 },
-    { name: "No Sleep", file: "Boom Bap/No Sleep.mp3", genre: "boom-bap", size: 4108518 },
-    { name: "Not Easy", file: "Boom Bap/Not Easy.mp3", genre: "boom-bap", size: 4180518 },
-    { name: "Orias", file: "Boom Bap/Orias.mp3", genre: "boom-bap", size: 4159395 },
-    { name: "Ouroboros", file: "Boom Bap/Ouroboros.mp3", genre: "boom-bap", size: 3495079 },
-    { name: "Phantom Shadow", file: "Boom Bap/Phantom Shadow.mp3", genre: "boom-bap", size: 3097164 },
-    { name: "Rage", file: "Boom Bap/Rage.mp3", genre: "boom-bap", size: 4218914 },
-    { name: "Raw Play", file: "Boom Bap/Raw Play.mp3", genre: "boom-bap", size: 3317478 },
-    { name: "Reflection", file: "Boom Bap/Reflection.mp3", genre: "boom-bap", size: 3683240 },
-    { name: "Ritual Night", file: "Boom Bap/Ritual Night.mp3", genre: "boom-bap", size: 4291402 },
-    { name: "Robbery", file: "Boom Bap/Robbery.mp3", genre: "boom-bap", size: 4298117 },
-    { name: "Smoke - Griselda", file: "Boom Bap/Smoke - Griselda.mp3", genre: "boom-bap", size: 4622606 },
-    { name: "Smoke", file: "Boom Bap/Smoke.mp3", genre: "boom-bap", size: 3926115 },
-    { name: "Stolas", file: "Boom Bap/Stolas.mp3", genre: "boom-bap", size: 4858276 },
-    { name: "Subconscious", file: "Boom Bap/Subconscious.mp3", genre: "boom-bap", size: 4408042 },
-    { name: "Tinta Negra", file: "Boom Bap/Tinta Negra.mp3", genre: "boom-bap", size: 4242441 },
-    { name: "Transdimensional Picnic", file: "Boom Bap/Transdimensional Picnic.mp3", genre: "boom-bap", size: 4132533 },
-    { name: "True Grit", file: "Boom Bap/True Grit.mp3", genre: "boom-bap", size: 4259239 },
-    { name: "UFO Ride", file: "Boom Bap/UFO Ride.mp3", genre: "boom-bap", size: 4033638 },
-    { name: "Uncut Lines", file: "Boom Bap/Uncut Lines.mp3", genre: "boom-bap", size: 3792681 },
-    { name: "Unidentified Encounters", file: "Boom Bap/Unidentified Encounters.mp3", genre: "boom-bap", size: 3917013 },
-    { name: "Villain", file: "Boom Bap/Villain.mp3", genre: "boom-bap", size: 3975557 },
-    { name: "Voices on My Head", file: "Boom Bap/Voices on My Head.mp3", genre: "boom-bap", size: 4125807 },
-    { name: "Void", file: "Boom Bap/Void.mp3", genre: "boom-bap", size: 4447394 },
-    { name: "Walking Through Chaos", file: "Boom Bap/Walking Through Chaos.mp3", genre: "boom-bap", size: 3956371 },
-    { name: "Witchcraft", file: "Boom Bap/Witchcraft.mp3", genre: "boom-bap", size: 3799400 },
-    { name: "illuminati", file: "Boom Bap/illuminati.mp3", genre: "boom-bap", size: 3783080 },
-
-    // Dark Boom Bap (newly registered)
-    { name: "Andromeda", file: "Dark Boom Bap/Andromeda.mp3", genre: "dark-boom-bap", size: 4621159 },
-    { name: "Ira", file: "Dark Boom Bap/Ira.mp3", genre: "dark-boom-bap", size: 4603393 },
-    { name: "Roto", file: "Dark Boom Bap/Roto.mp3", genre: "dark-boom-bap", size: 3903074 },
-
-    // Newly added
-    { name: "Demente", file: "Dark Boom Bap/Demente.mp3", genre: "dark-boom-bap", size: 2708357 },
-    { name: "Maldito", file: "Dark Boom Bap/Maldito.mp3", genre: "dark-boom-bap", size: 4499717 },
-    { name: "Sol Negro", file: "Dark Boom Bap/Sol Negro.mp3", genre: "dark-boom-bap", size: 3420199 },
-
-    // Trap (25 beats)
-    { name: "24/7", file: "Trap/24_7.mp3", genre: "trap", size: 3399600 },
-    { name: "300", file: "Trap/300.mp3", genre: "trap", size: 2694433 },
-    { name: "Account", file: "Trap/Account.mp3", genre: "trap", size: 3400037 },
-    { name: "Airport", file: "Trap/Airport.mp3", genre: "trap", size: 3057797 },
-    { name: "Demons", file: "Trap/Demons.mp3", genre: "trap", size: 3547876 },
-    { name: "Diamond", file: "Trap/Diamond.mp3", genre: "trap", size: 3283397 },
-    { name: "Extra Hours", file: "Trap/Extra Hours.mp3", genre: "trap", size: 3276201 },
-    { name: "Glizzy", file: "Trap/Glizzy.mp3", genre: "trap", size: 2943076 },
-    { name: "Heat", file: "Trap/Heat.mp3", genre: "trap", size: 2563681 },
-    { name: "Honey", file: "Trap/Honey.mp3", genre: "trap", size: 3411075 },
-    { name: "Incantations", file: "Trap/Incantations.mp3", genre: "trap", size: 3742282 },
-    { name: "Jupiter", file: "Trap/Jupiter.mp3", genre: "trap", size: 3203237 },
-    { name: "Lil Baby - No Sleep", file: "Trap/Lil Baby - No Sleep.mp3", genre: "trap", size: 2781329 },
-    { name: "Marching Flute", file: "Trap/Marching Flute.mp3", genre: "trap", size: 3603084 },
-    { name: "My Turn", file: "Trap/My Turn.mp3", genre: "trap", size: 3299717 },
-    { name: "Never Look Back", file: "Trap/Never Look Back.mp3", genre: "trap", size: 3548845 },
-    { name: "Never Stopping", file: "Trap/Never Stopping.mp3", genre: "trap", size: 4069389 },
-    { name: "Not Luck", file: "Trap/Not Luck.mp3", genre: "trap", size: 2762598 },
-    { name: "R.I.C.O.", file: "Trap/R.I.C.O..mp3", genre: "trap", size: 2998278 },
-    { name: "Special Ops", file: "Trap/Special Ops.mp3", genre: "trap", size: 3315081 },
-    { name: "Telepathy", file: "Trap/Telepathy.mp3", genre: "trap", size: 3449479 },
-    { name: "Tiktok", file: "Trap/Tiktok.mp3", genre: "trap", size: 3386116 },
-    { name: "Top Dog", file: "Trap/Top Dog.mp3", genre: "trap", size: 2883077 },
-    { name: "Turbo", file: "Trap/Turbo.mp3", genre: "trap", size: 3660675 },
-    { name: "Worst Without me", file: "Trap/Worst Without me.mp3", genre: "trap", size: 2847566 },
-
-    // Drill (4 beats)
-    { name: "Beast Mode", file: "Drill/Beast Mode.mp3", genre: "drill", size: 3911720 },
-    { name: "Cuerno", file: "Drill/Cuerno.mp3", genre: "drill", size: 2862916 },
-    { name: "Risky", file: "Drill/Risky.mp3", genre: "drill", size: 5214915 },
-    { name: "Scars", file: "Drill/Scars.mp3", genre: "drill", size: 3363075 },
-
-    // Reggaeton (6 beats)
-    { name: "Conocida", file: "Reggaeton/Conocida.mp3", genre: "reggaeton", size: 3616038 },
-    { name: "Historia", file: "Reggaeton/Historia.mp3", genre: "reggaeton", size: 3742278 },
-    { name: "Olvidarte", file: "Reggaeton/Olvidarte.mp3", genre: "reggaeton", size: 3950119 },
-    { name: "Otro Numero", file: "Reggaeton/Otro Numero.mp3", genre: "reggaeton", size: 3655401 },
-    { name: "Recuerdo", file: "Reggaeton/Recuerdo.mp3", genre: "reggaeton", size: 4148838 },
-    { name: "Regresa", file: "Reggaeton/Regresa.mp3", genre: "reggaeton", size: 4643237 },
-
-    // Rage (5 beats)
-    { name: "Can't Do This", file: "Rage/Can't Do This.mp3", genre: "rage", size: 3441405 },
-    { name: "FLXN", file: "Rage/FLXN.mp3", genre: "rage", size: 2340194 },
-    { name: "IDKY", file: "Rage/IDKY.mp3", genre: "rage", size: 2813954 },
-    { name: "Nascar", file: "Rage/Nascar.mp3", genre: "rage", size: 2847556 },
-    { name: "SHXT", file: "Rage/SHXT.mp3", genre: "rage", size: 2340194 },
-
-    // Electronic (4 beats)
-    { name: "Discover You", file: "Electronic/Discover You.mp3", genre: "electronic", size: 4841482 },
-    { name: "Memories", file: "Electronic/Memories.mp3", genre: "electronic", size: 3256998 },
-    { name: "Rizz", file: "Electronic/Rizz.mp3", genre: "electronic", size: 3187874 },
-    { name: "Sueños", file: "Electronic/Sueños.mp3", genre: "electronic", size: 4186767 },
-
-    // Rock (1 beat)
-    { name: "Break You", file: "Rock/Break You.mp3", genre: "rock", size: 4241479 }
+    // Generado automáticamente - 2025-08-29T00:58:36.524462
+    { name: "100k Stack", file: "MP3/Dark Boom Bap/100k Stack.mp3", genre: "dark-boom-bap", size: 4003400 },
+    { name: "24_7", file: "MP3/Trap/24_7.mp3", genre: "trap", size: 3399600 },
+    { name: "3 Gramos", file: "MP3/Dark Boom Bap/3 Gramos.mp3", genre: "dark-boom-bap", size: 4217958 },
+    { name: "300", file: "MP3/Trap/300.mp3", genre: "trap", size: 2694433 },
+    { name: "7 Kilos", file: "MP3/Dark Boom Bap/7 Kilos.mp3", genre: "dark-boom-bap", size: 4291397 },
+    { name: "Abnormal Thoughts", file: "MP3/Dark Boom Bap/Abnormal Thoughts.mp3", genre: "dark-boom-bap", size: 4940367 },
+    { name: "Account", file: "MP3/Trap/Account.mp3", genre: "trap", size: 3400037 },
+    { name: "Ain't Easy", file: "MP3/Dark Boom Bap/Ain't Easy.mp3", genre: "dark-boom-bap", size: 3854600 },
+    { name: "Airport", file: "MP3/Trap/Airport.mp3", genre: "trap", size: 3057797 },
+    { name: "Andromeda", file: "MP3/Dark Boom Bap/Andromeda.mp3", genre: "dark-boom-bap", size: 4621159 },
+    { name: "Ares", file: "MP3/Dark Boom Bap/Ares.mp3", genre: "dark-boom-bap", size: 3246434 },
+    { name: "Ashes", file: "MP3/Dark Boom Bap/Ashes.mp3", genre: "dark-boom-bap", size: 4069155 },
+    { name: "At Night", file: "MP3/Boom Bap/At Night.mp3", genre: "boom-bap", size: 3654918 },
+    { name: "Basilisco", file: "MP3/Dark Boom Bap/Basilisco.mp3", genre: "dark-boom-bap", size: 4189159 },
+    { name: "Beast", file: "MP3/Dark Boom Bap/Beast.mp3", genre: "dark-boom-bap", size: 3730755 },
+    { name: "Beast Mode", file: "MP3/Drill/Beast Mode.mp3", genre: "drill", size: 3911720 },
+    { name: "Belial", file: "MP3/Dark Boom Bap/Belial.mp3", genre: "dark-boom-bap", size: 3690916 },
+    { name: "Bizarre Dream", file: "MP3/Dark Boom Bap/Bizarre Dream.mp3", genre: "dark-boom-bap", size: 4269803 },
+    { name: "Block Party Blues", file: "MP3/Boom Bap/Block Party Blues.mp3", genre: "boom-bap", size: 4389327 },
+    { name: "Blood Stain", file: "MP3/Dark Boom Bap/Blood Stain.mp3", genre: "dark-boom-bap", size: 3894441 },
+    { name: "Break You", file: "MP3/Rock/Break You.mp3", genre: "rock", size: 4241479 },
+    { name: "Can't Do This", file: "MP3/Rage/Can't Do This.mp3", genre: "rage", size: 3441405 },
+    { name: "Cashing Out", file: "MP3/Boom Bap/Cashing Out.mp3", genre: "boom-bap", size: 3686601 },
+    { name: "Cerberus", file: "MP3/Dark Boom Bap/Cerberus.mp3", genre: "dark-boom-bap", size: 4417158 },
+    { name: "Clandestine", file: "MP3/Dark Boom Bap/Clandestine.mp3", genre: "dark-boom-bap", size: 3903081 },
+    { name: "Conocida", file: "MP3/Reggaeton/Conocida.mp3", genre: "reggaeton", size: 3616038 },
+    { name: "Cuerno", file: "MP3/Drill/Cuerno.mp3", genre: "drill", size: 2862916 },
+    { name: "Cursed", file: "MP3/Dark Boom Bap/Cursed.mp3", genre: "dark-boom-bap", size: 4947556 },
+    { name: "Dangerous", file: "MP3/Dark Boom Bap/Dangerous.mp3", genre: "dark-boom-bap", size: 4195399 },
+    { name: "Dark Boom Bap - Void", file: "MP3/Dark Boom Bap/Dark Boom Bap - Void.mp3", genre: "dark-boom-bap", size: 4203090 },
+    { name: "Dark Knight", file: "MP3/Dark Boom Bap/Dark Knight.mp3", genre: "dark-boom-bap", size: 4311081 },
+    { name: "Dark Times", file: "MP3/Boom Bap/Dark Times.mp3", genre: "boom-bap", size: 3353960 },
+    { name: "Demente", file: "MP3/Dark Boom Bap/Demente.mp3", genre: "dark-boom-bap", size: 2708357 },
+    { name: "Demons", file: "MP3/Trap/Demons.mp3", genre: "trap", size: 3547876 },
+    { name: "Diamond", file: "MP3/Trap/Diamond.mp3", genre: "trap", size: 3283397 },
+    { name: "Diamond Cut", file: "MP3/Dark Boom Bap/Diamond Cut.mp3", genre: "dark-boom-bap", size: 3858441 },
+    { name: "Discover You", file: "MP3/Electronic/Discover You.mp3", genre: "electronic", size: 4841482 },
+    { name: "Dracula", file: "MP3/Dark Boom Bap/Dracula.mp3", genre: "dark-boom-bap", size: 3993797 },
+    { name: "Echoes of Yesterday", file: "MP3/Boom Bap/Echoes of Yesterday.mp3", genre: "boom-bap", size: 3904529 },
+    { name: "El Barrio", file: "MP3/Boom Bap/El Barrio.mp3", genre: "boom-bap", size: 3664039 },
+    { name: "Engulfed By Madness", file: "MP3/Dark Boom Bap/Engulfed By Madness.mp3", genre: "dark-boom-bap", size: 3814289 },
+    { name: "Ethereal Illusions", file: "MP3/Dark Boom Bap/Ethereal Illusions.mp3", genre: "dark-boom-bap", size: 4744528 },
+    { name: "Expanded Perception", file: "MP3/Dark Boom Bap/Expanded Perception.mp3", genre: "dark-boom-bap", size: 4536689 },
+    { name: "Extra Hours", file: "MP3/Trap/Extra Hours.mp3", genre: "trap", size: 3276201 },
+    { name: "FLXN", file: "MP3/Rage/FLXN.mp3", genre: "rage", size: 2340194 },
+    { name: "Faded Page", file: "MP3/Boom Bap/Faded Page.mp3", genre: "boom-bap", size: 3886280 },
+    { name: "Fate", file: "MP3/Boom Bap/Fate.mp3", genre: "boom-bap", size: 3007394 },
+    { name: "Final Boss", file: "MP3/Dark Boom Bap/Final Boss.mp3", genre: "dark-boom-bap", size: 4031240 },
+    { name: "Flota", file: "MP3/Dark Boom Bap/Flota.mp3", genre: "dark-boom-bap", size: 4059075 },
+    { name: "From The Darkness", file: "MP3/Dark Boom Bap/From The Darkness.mp3", genre: "dark-boom-bap", size: 4283247 },
+    { name: "Furious", file: "MP3/Dark Boom Bap/Furious.mp3", genre: "dark-boom-bap", size: 2930117 },
+    { name: "Gargola", file: "MP3/Dark Boom Bap/Gargola.mp3", genre: "dark-boom-bap", size: 4323077 },
+    { name: "Glizzy", file: "MP3/Trap/Glizzy.mp3", genre: "trap", size: 2943076 },
+    { name: "Gucci", file: "MP3/Boom Bap/Gucci.mp3", genre: "boom-bap", size: 4249635 },
+    { name: "Hallucinations", file: "MP3/Dark Boom Bap/Hallucinations.mp3", genre: "dark-boom-bap", size: 3550284 },
+    { name: "Hard Life", file: "MP3/Boom Bap/Hard Life.mp3", genre: "boom-bap", size: 3637639 },
+    { name: "Haze", file: "MP3/Dark Boom Bap/Haze.mp3", genre: "dark-boom-bap", size: 3443714 },
+    { name: "Headshot", file: "MP3/Dark Boom Bap/Headshot.mp3", genre: "dark-boom-bap", size: 4735878 },
+    { name: "Heat", file: "MP3/Trap/Heat.mp3", genre: "trap", size: 2563681 },
+    { name: "Heaven And Hell", file: "MP3/Boom Bap/Heaven And Hell.mp3", genre: "boom-bap", size: 4501165 },
+    { name: "Historia", file: "MP3/Reggaeton/Historia.mp3", genre: "reggaeton", size: 3742278 },
+    { name: "Honey", file: "MP3/Trap/Honey.mp3", genre: "trap", size: 3411075 },
+    { name: "IDKY", file: "MP3/Rage/IDKY.mp3", genre: "rage", size: 2813954 },
+    { name: "Ice Box", file: "MP3/Dark Boom Bap/Ice Box.mp3", genre: "dark-boom-bap", size: 4304837 },
+    { name: "Illusion of Choice", file: "MP3/Dark Boom Bap/Illusion of Choice.mp3", genre: "dark-boom-bap", size: 4203088 },
+    { name: "Impala", file: "MP3/Boom Bap/Impala.mp3", genre: "boom-bap", size: 3129796 },
+    { name: "Incantations", file: "MP3/Trap/Incantations.mp3", genre: "trap", size: 3742282 },
+    { name: "Infinite Dream", file: "MP3/Dark Boom Bap/Infinite Dream.mp3", genre: "dark-boom-bap", size: 3521004 },
+    { name: "Infinite Labyrinth", file: "MP3/Dark Boom Bap/Infinite Labyrinth.mp3", genre: "dark-boom-bap", size: 3939088 },
+    { name: "Ira", file: "MP3/Dark Boom Bap/Ira.mp3", genre: "dark-boom-bap", size: 4603393 },
+    { name: "Joker", file: "MP3/Dark Boom Bap/Joker.mp3", genre: "dark-boom-bap", size: 3120195 },
+    { name: "Jupiter", file: "MP3/Trap/Jupiter.mp3", genre: "trap", size: 3203237 },
+    { name: "Ketamine", file: "MP3/Dark Boom Bap/Ketamine.mp3", genre: "dark-boom-bap", size: 4003398 },
+    { name: "King", file: "MP3/Boom Bap/King.mp3", genre: "boom-bap", size: 2612834 },
+    { name: "Legacy", file: "MP3/Dark Boom Bap/Legacy.mp3", genre: "dark-boom-bap", size: 4096516 },
+    { name: "Lil Baby - No Sleep", file: "MP3/Trap/Lil Baby - No Sleep.mp3", genre: "trap", size: 2781329 },
+    { name: "Machiavelli", file: "MP3/Dark Boom Bap/Machiavelli.mp3", genre: "dark-boom-bap", size: 4181961 },
+    { name: "Mad", file: "MP3/Dark Boom Bap/Mad.mp3", genre: "dark-boom-bap", size: 3858433 },
+    { name: "Magia", file: "MP3/Dark Boom Bap/Magia.mp3", genre: "dark-boom-bap", size: 4226115 },
+    { name: "Maldito", file: "MP3/Dark Boom Bap/Maldito.mp3", genre: "dark-boom-bap", size: 4499717 },
+    { name: "Marching Flute", file: "MP3/Trap/Marching Flute.mp3", genre: "trap", size: 3603084 },
+    { name: "Medusa", file: "MP3/Dark Boom Bap/Medusa.mp3", genre: "dark-boom-bap", size: 4281316 },
+    { name: "Melting Mind", file: "MP3/Dark Boom Bap/Melting Mind.mp3", genre: "dark-boom-bap", size: 4205482 },
+    { name: "Memories", file: "MP3/Electronic/Memories.mp3", genre: "electronic", size: 3256998 },
+    { name: "Mente Rota", file: "MP3/Dark Boom Bap/Mente Rota.mp3", genre: "dark-boom-bap", size: 3961160 },
+    { name: "Midnight", file: "MP3/Boom Bap/Midnight.mp3", genre: "boom-bap", size: 3880038 },
+    { name: "Millitia", file: "MP3/Dark Boom Bap/Millitia.mp3", genre: "dark-boom-bap", size: 3157638 },
+    { name: "Mind State", file: "MP3/Boom Bap/Mind State.mp3", genre: "boom-bap", size: 3724520 },
+    { name: "Moloc", file: "MP3/Dark Boom Bap/Moloc.mp3", genre: "dark-boom-bap", size: 3946755 },
+    { name: "Money In Hand", file: "MP3/Dark Boom Bap/Money In Hand.mp3", genre: "dark-boom-bap", size: 3683243 },
+    { name: "Monster", file: "MP3/Dark Boom Bap/Monster.mp3", genre: "dark-boom-bap", size: 4291397 },
+    { name: "Most Wanted", file: "MP3/Dark Boom Bap/Most Wanted.mp3", genre: "dark-boom-bap", size: 3663561 },
+    { name: "My Turn", file: "MP3/Trap/My Turn.mp3", genre: "trap", size: 3299717 },
+    { name: "Mysterious-Force", file: "MP3/Dark Boom Bap/Mysterious-Force.mp3", genre: "dark-boom-bap", size: 4003406 },
+    { name: "Nascar", file: "MP3/Rage/Nascar.mp3", genre: "rage", size: 2847556 },
+    { name: "Never Look Back", file: "MP3/Trap/Never Look Back.mp3", genre: "trap", size: 3548845 },
+    { name: "Never Stopping", file: "MP3/Trap/Never Stopping.mp3", genre: "trap", size: 4069389 },
+    { name: "Night Light", file: "MP3/Dark Boom Bap/Night Light.mp3", genre: "dark-boom-bap", size: 3624681 },
+    { name: "Night Plan", file: "MP3/Dark Boom Bap/Night Plan.mp3", genre: "dark-boom-bap", size: 3647720 },
+    { name: "No Sleep", file: "MP3/Boom Bap/No Sleep.mp3", genre: "boom-bap", size: 4108518 },
+    { name: "Noche", file: "MP3/Dark Boom Bap/Noche.mp3", genre: "dark-boom-bap", size: 4247235 },
+    { name: "Not Easy", file: "MP3/Dark Boom Bap/Not Easy.mp3", genre: "dark-boom-bap", size: 4180518 },
+    { name: "Not Luck", file: "MP3/Trap/Not Luck.mp3", genre: "trap", size: 2762598 },
+    { name: "Olvidarte", file: "MP3/Reggaeton/Olvidarte.mp3", genre: "reggaeton", size: 3950119 },
+    { name: "Orias", file: "MP3/Dark Boom Bap/Orias.mp3", genre: "dark-boom-bap", size: 4159395 },
+    { name: "Otro Numero", file: "MP3/Reggaeton/Otro Numero.mp3", genre: "reggaeton", size: 3655401 },
+    { name: "Ouroboros", file: "MP3/Dark Boom Bap/Ouroboros.mp3", genre: "dark-boom-bap", size: 3495079 },
+    { name: "Pensamientos", file: "MP3/Dark Boom Bap/Pensamientos.mp3", genre: "dark-boom-bap", size: 3895402 },
+    { name: "Phantom Shadow", file: "MP3/Dark Boom Bap/Phantom Shadow.mp3", genre: "dark-boom-bap", size: 3097164 },
+    { name: "Problema", file: "MP3/Dark Boom Bap/Problema.mp3", genre: "dark-boom-bap", size: 3843078 },
+    { name: "R.I.C.O.", file: "MP3/Trap/R.I.C.O..mp3", genre: "trap", size: 2998278 },
+    { name: "Rage", file: "MP3/Dark Boom Bap/Rage.mp3", genre: "dark-boom-bap", size: 4218914 },
+    { name: "Raw Play", file: "MP3/Boom Bap/Raw Play.mp3", genre: "boom-bap", size: 3317478 },
+    { name: "Recuerdo", file: "MP3/Reggaeton/Recuerdo.mp3", genre: "reggaeton", size: 4148838 },
+    { name: "Reflection", file: "MP3/Boom Bap/Reflection.mp3", genre: "boom-bap", size: 3683240 },
+    { name: "Regresa", file: "MP3/Reggaeton/Regresa.mp3", genre: "reggaeton", size: 4643237 },
+    { name: "Risky", file: "MP3/Drill/Risky.mp3", genre: "drill", size: 5214915 },
+    { name: "Ritual Night", file: "MP3/Dark Boom Bap/Ritual Night.mp3", genre: "dark-boom-bap", size: 4291402 },
+    { name: "Rizz", file: "MP3/Electronic/Rizz.mp3", genre: "electronic", size: 3187874 },
+    { name: "Robbery", file: "MP3/Dark Boom Bap/Robbery.mp3", genre: "dark-boom-bap", size: 4298117 },
+    { name: "Roto", file: "MP3/Dark Boom Bap/Roto.mp3", genre: "dark-boom-bap", size: 3903074 },
+    { name: "SHXT", file: "MP3/Rage/SHXT.mp3", genre: "rage", size: 2340194 },
+    { name: "Scars", file: "MP3/Drill/Scars.mp3", genre: "drill", size: 3363075 },
+    { name: "Smoke", file: "MP3/Dark Boom Bap/Smoke.mp3", genre: "dark-boom-bap", size: 3926115 },
+    { name: "Smoke - Griselda", file: "MP3/Dark Boom Bap/Smoke - Griselda.mp3", genre: "dark-boom-bap", size: 4622606 },
+    { name: "Sol Negro", file: "MP3/Dark Boom Bap/Sol Negro.mp3", genre: "dark-boom-bap", size: 3420199 },
+    { name: "Special Ops", file: "MP3/Trap/Special Ops.mp3", genre: "trap", size: 3315081 },
+    { name: "Stolas", file: "MP3/Dark Boom Bap/Stolas.mp3", genre: "dark-boom-bap", size: 4858276 },
+    { name: "Subconscious", file: "MP3/Dark Boom Bap/Subconscious.mp3", genre: "dark-boom-bap", size: 4408042 },
+    { name: "Sueños", file: "MP3/Electronic/Sueños.mp3", genre: "electronic", size: 4186767 },
+    { name: "Telepathy", file: "MP3/Trap/Telepathy.mp3", genre: "trap", size: 3449479 },
+    { name: "Tiktok", file: "MP3/Trap/Tiktok.mp3", genre: "trap", size: 3386116 },
+    { name: "Tinta Negra", file: "MP3/Dark Boom Bap/Tinta Negra.mp3", genre: "dark-boom-bap", size: 4242441 },
+    { name: "Top Dog", file: "MP3/Trap/Top Dog.mp3", genre: "trap", size: 2883077 },
+    { name: "Transdimensional Picnic", file: "MP3/Dark Boom Bap/Transdimensional Picnic.mp3", genre: "dark-boom-bap", size: 4132533 },
+    { name: "True Grit", file: "MP3/Dark Boom Bap/True Grit.mp3", genre: "dark-boom-bap", size: 4259239 },
+    { name: "Turbo", file: "MP3/Trap/Turbo.mp3", genre: "trap", size: 3660675 },
+    { name: "UFO Ride", file: "MP3/Dark Boom Bap/UFO Ride.mp3", genre: "dark-boom-bap", size: 4033638 },
+    { name: "Uncut Lines", file: "MP3/Dark Boom Bap/Uncut Lines.mp3", genre: "dark-boom-bap", size: 3792681 },
+    { name: "Unidentified Encounters", file: "MP3/Boom Bap/Unidentified Encounters.mp3", genre: "boom-bap", size: 3917013 },
+    { name: "Villain", file: "MP3/Boom Bap/Villain.mp3", genre: "boom-bap", size: 3975557 },
+    { name: "Voices on My Head", file: "MP3/Dark Boom Bap/Voices on My Head.mp3", genre: "dark-boom-bap", size: 4125807 },
+    { name: "Void", file: "MP3/Dark Boom Bap/Void.mp3", genre: "dark-boom-bap", size: 4447394 },
+    { name: "Walking Through Chaos", file: "MP3/Dark Boom Bap/Walking Through Chaos.mp3", genre: "dark-boom-bap", size: 3956371 },
+    { name: "Witchcraft", file: "MP3/Dark Boom Bap/Witchcraft.mp3", genre: "dark-boom-bap", size: 3799400 },
+    { name: "Worst Without me", file: "MP3/Trap/Worst Without me.mp3", genre: "trap", size: 2847566 },
+    { name: "illuminati", file: "MP3/Dark Boom Bap/illuminati.mp3", genre: "dark-boom-bap", size: 3783080 },
 ];
 
 // Map Boom Bap -> Dark Boom Bap if file was moved
 // List of filenames present in `MP3/Dark Boom Bap/`
 const DARK_BOOM_BAP_FILES = new Set([
-    "100k Stack.mp3","7 Kilos.mp3","Abnormal Thoughts.mp3","Ain't Easy.mp3","Andromeda.mp3","Ares.mp3","Ashes.mp3","Beast.mp3","Belial.mp3","Bizarre Dream.mp3","Blood Stain.mp3","Cerberus.mp3","Clandestine.mp3","Cursed.mp3","Dangerous.mp3","Dark Boom Bap - Void.mp3","Dark Knight.mp3","Demente.mp3","Diamond Cut.mp3","Engulfed By Madness.mp3","Ethereal Illusions.mp3","Expanded Perception.mp3","Final Boss.mp3","From The Darkness.mp3","Furious.mp3","Hallucinations.mp3","Haze.mp3","Headshot.mp3","Ice Box.mp3","Illusion of Choice.mp3","Infinite Dream.mp3","Infinite Labyrinth.mp3","Ira.mp3","Joker.mp3","Ketamine.mp3","Legacy.mp3","Machiavelli.mp3","Mad.mp3","Maldito.mp3","Medusa.mp3","Melting Mind.mp3","Mente Rota.mp3","Millitia.mp3","Moloc.mp3","Money In Hand.mp3","Monster.mp3","Most Wanted.mp3","Mysterious-Force.mp3","Night Light.mp3","Night Plan.mp3","Not Easy.mp3","Orias.mp3","Ouroboros.mp3","Phantom Shadow.mp3","Rage.mp3","Ritual Night.mp3","Robbery.mp3","Roto.mp3","Smoke - Griselda.mp3","Smoke.mp3","Sol Negro.mp3","Stolas.mp3","Subconscious.mp3","Tinta Negra.mp3","Transdimensional Picnic.mp3","True Grit.mp3","UFO Ride.mp3","Uncut Lines.mp3","Voices on My Head.mp3","Void.mp3","Walking Through Chaos.mp3","Witchcraft.mp3","illuminati.mp3"
+    "100k Stack.mp3",
+    "3 Gramos.mp3",
+    "7 Kilos.mp3",
+    "Abnormal Thoughts.mp3",
+    "Ain't Easy.mp3",
+    "Andromeda.mp3",
+    "Ares.mp3",
+    "Ashes.mp3",
+    "Basilisco.mp3",
+    "Beast.mp3",
+    "Belial.mp3",
+    "Bizarre Dream.mp3",
+    "Blood Stain.mp3",
+    "Cerberus.mp3",
+    "Clandestine.mp3",
+    "Cursed.mp3",
+    "Dangerous.mp3",
+    "Dark Boom Bap - Void.mp3",
+    "Dark Knight.mp3",
+    "Demente.mp3",
+    "Diamond Cut.mp3",
+    "Dracula.mp3",
+    "Engulfed By Madness.mp3",
+    "Ethereal Illusions.mp3",
+    "Expanded Perception.mp3",
+    "Final Boss.mp3",
+    "Flota.mp3",
+    "From The Darkness.mp3",
+    "Furious.mp3",
+    "Gargola.mp3",
+    "Hallucinations.mp3",
+    "Haze.mp3",
+    "Headshot.mp3",
+    "Ice Box.mp3",
+    "Illusion of Choice.mp3",
+    "Infinite Dream.mp3",
+    "Infinite Labyrinth.mp3",
+    "Ira.mp3",
+    "Joker.mp3",
+    "Ketamine.mp3",
+    "Legacy.mp3",
+    "Machiavelli.mp3",
+    "Mad.mp3",
+    "Magia.mp3",
+    "Maldito.mp3",
+    "Medusa.mp3",
+    "Melting Mind.mp3",
+    "Mente Rota.mp3",
+    "Millitia.mp3",
+    "Moloc.mp3",
+    "Money In Hand.mp3",
+    "Monster.mp3",
+    "Most Wanted.mp3",
+    "Mysterious-Force.mp3",
+    "Night Light.mp3",
+    "Night Plan.mp3",
+    "Noche.mp3",
+    "Not Easy.mp3",
+    "Orias.mp3",
+    "Ouroboros.mp3",
+    "Pensamientos.mp3",
+    "Phantom Shadow.mp3",
+    "Problema.mp3",
+    "Rage.mp3",
+    "Ritual Night.mp3",
+    "Robbery.mp3",
+    "Roto.mp3",
+    "Smoke.mp3",
+    "Smoke - Griselda.mp3",
+    "Sol Negro.mp3",
+    "Stolas.mp3",
+    "Subconscious.mp3",
+    "Tinta Negra.mp3",
+    "Transdimensional Picnic.mp3",
+    "True Grit.mp3",
+    "UFO Ride.mp3",
+    "Uncut Lines.mp3",
+    "Voices on My Head.mp3",
+    "Void.mp3",
+    "Walking Through Chaos.mp3",
+    "Witchcraft.mp3",
+    "illuminati.mp3",
 ]);
 
 // Normalize beats: if a Boom Bap file is now under Dark Boom Bap, update its path and genre
@@ -182,6 +256,15 @@ for (const beat of beats) {
     }
 }
 
+// Helper to safely encode URL paths (handles spaces, accents like ñ, etc.)
+function encodePath(p) {
+    if (typeof p !== 'string') return '';
+    return p.split('/').map(encodeURIComponent).join('/');
+}
+
+// Global build token for cache-busting (provided by index.html loader)
+const BUILD_TOKEN = (typeof window !== 'undefined' && window.__BUILD_VERSION) ? String(window.__BUILD_VERSION) : Date.now().toString();
+
 // Global variables
 let currentMode = 'beats'; // 'beats' or 'ideas'
 let currentData = beats;
@@ -194,9 +277,18 @@ let currentSort = 'default'; // 'default' | 'random' | 'az' | 'za' | 'newest' | 
 // Duration metadata loading control
 const durationCache = new Map(); // key: file path, value: seconds (number)
 let metadataConcurrency = 0;
-const MAX_METADATA_CONCURRENCY = 5;
+const MAX_METADATA_CONCURRENCY = 2;
 const durationQueue = []; // queue of { file, element, mode }
 const pendingDurationAudios = new Set(); // active Audio objects for cancellation
+
+// Lazy rendering & metadata observers
+const PAGE_SIZE = 150;
+let renderOffset = 0;
+let durationObserver = null;
+let sentinelObserver = null;
+// Infinite scroll sentinel element
+const infiniteSentinel = document.createElement('div');
+infiniteSentinel.style.height = '1px';
 
 // DOM elements
 const modeSwitch = document.getElementById('modeSwitch');
@@ -241,6 +333,11 @@ const ADDED_AT = new Map([
 
 // Initialize the app
 document.addEventListener('DOMContentLoaded', function() {
+    // place sentinel after list container
+    if (beatsContainer && beatsContainer.parentNode) {
+        beatsContainer.parentNode.appendChild(infiniteSentinel);
+    }
+    createObservers();
     renderBeats();
     setupEventListeners();
     loading.style.display = 'none';
@@ -248,9 +345,16 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Render beats list
 function renderBeats() {
+    // Reset container and state
     beatsContainer.innerHTML = '';
-    
-    filteredBeats.forEach((beat, index) => {
+    renderOffset = 0;
+    // Render first batch
+    renderNextBatch();
+}
+
+function renderNextBatch() {
+    const slice = filteredBeats.slice(renderOffset, renderOffset + PAGE_SIZE);
+    slice.forEach((beat) => {
         const beatRow = document.createElement('div');
         beatRow.className = 'beat-row';
         const beatIndex = currentData.indexOf(beat);
@@ -261,17 +365,50 @@ function renderBeats() {
                 const l = g === 'boom-bap' ? 'Boom Bap' : (g === 'dark-boom-bap' ? 'Dark Boom Bap' : g);
                 return `<div class=\"beat-genre ${g}\">${l}</div>`; 
             })()}
-            <div class="beat-duration" data-file="${beat.file}">Loading...</div>
+            <div class="beat-duration" data-file="${beat.file}">—</div>
             <div class="beat-size">${formatFileSize(beat.size)}</div>
             <button class="beat-play-btn" onclick="playBeat(${beatIndex})">
                 <i class="fas fa-play"></i>
             </button>
         `;
         beatsContainer.appendChild(beatRow);
-        
-        // Load duration asynchronously (queued with concurrency + cache)
-        loadBeatDuration(beat.file, beatRow.querySelector('.beat-duration'));
+        const durEl = beatRow.querySelector('.beat-duration');
+        if (durationObserver && durEl) durationObserver.observe(durEl);
     });
+    renderOffset += slice.length;
+    // Manage sentinel
+    if (renderOffset < filteredBeats.length) {
+        if (sentinelObserver) sentinelObserver.observe(infiniteSentinel);
+    } else {
+        if (sentinelObserver) sentinelObserver.unobserve(infiniteSentinel);
+    }
+}
+
+function createObservers() {
+    // Observer for durations (lazy load when visible)
+    if (durationObserver) durationObserver.disconnect();
+    durationObserver = new IntersectionObserver((entries) => {
+        for (const entry of entries) {
+            if (entry.isIntersecting) {
+                const el = entry.target;
+                const file = el && el.getAttribute('data-file');
+                if (file) {
+                    loadBeatDuration(file, el);
+                }
+                durationObserver.unobserve(el);
+            }
+        }
+    }, { root: null, rootMargin: '200px 0px', threshold: 0.01 });
+
+    // Observer for infinite scroll sentinel
+    if (sentinelObserver) sentinelObserver.disconnect();
+    sentinelObserver = new IntersectionObserver((entries) => {
+        for (const entry of entries) {
+            if (entry.isIntersecting) {
+                renderNextBatch();
+            }
+        }
+    }, { root: null, rootMargin: '400px 0px', threshold: 0 });
 }
 
 // Load beat duration
@@ -299,7 +436,7 @@ function processDurationQueue() {
         metadataConcurrency++;
         const folderPath = mode === 'beats' ? 'MP3' : 'Ideas';
         let attemptedAlt = false;
-        let audio = new Audio(`${folderPath}/${file}`);
+        let audio = new Audio(encodePath(`${folderPath}/${file}`) + `?v=${BUILD_TOKEN}`);
         pendingDurationAudios.add(audio);
 
         const cleanup = () => {
@@ -322,7 +459,7 @@ function processDurationQueue() {
                 attemptedAlt = true;
                 audio.removeEventListener('error', onErr);
                 const altFile = file.replace('Boom Bap/', 'Dark Boom Bap/');
-                audio = new Audio(`${folderPath}/${altFile}`);
+                audio = new Audio(encodePath(`${folderPath}/${altFile}`) + `?v=${BUILD_TOKEN}`);
                 pendingDurationAudios.add(audio);
                 audio.addEventListener('loadedmetadata', function() {
                     durationCache.set(file, audio.duration);
@@ -382,7 +519,7 @@ function playBeat(index) {
     const folderPath = currentMode === 'beats' ? 'MP3' : 'Ideas';
     
     // Primary source
-    let primaryPath = `${folderPath}/${beat.file}`;
+    let primaryPath = encodePath(`${folderPath}/${beat.file}`) + `?v=${BUILD_TOKEN}`;
     let triedAlt = false;
     audioElement.src = primaryPath;
     audioElement.load();
@@ -398,7 +535,7 @@ function playBeat(index) {
         // Fallback: try Dark Boom Bap if Boom Bap path fails
         if (!triedAlt && typeof beat.file === 'string' && beat.file.startsWith('Boom Bap/')) {
             triedAlt = true;
-            const altPath = `${folderPath}/${beat.file.replace('Boom Bap/', 'Dark Boom Bap/')}`;
+            const altPath = encodePath(`${folderPath}/${beat.file.replace('Boom Bap/', 'Dark Boom Bap/')}`) + `?v=${BUILD_TOKEN}`;
             audioElement.src = altPath;
             audioElement.load();
             return tryPlay();
@@ -673,6 +810,8 @@ function toggleMode() {
     if (categoryFilter) categoryFilter.value = '';
     filteredBeats = [...currentData];
     applySort();
+    // Reset observers and re-render in batches
+    createObservers();
     renderBeats();
     
     // Update track info
