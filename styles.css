@@ -48,7 +48,8 @@ body {
     gap: 15px;
 }
 
-.search-toggle {
+.search-toggle,
+.help-toggle {
     background: none;
     border: none;
     color: #888;
@@ -62,7 +63,8 @@ body {
     justify-content: center;
 }
 
-.search-toggle:hover {
+.search-toggle:hover,
+.help-toggle:hover {
     color: #ff6b6b;
     background: rgba(255, 107, 107, 0.1);
 }
@@ -903,12 +905,16 @@ body {
 }
 
 .modal-close:hover { color: #ff6b6b; background: rgba(255, 107, 107, 0.1); }
-<<<<<<< HEAD
 
-/* --- Temporarily hide download UI (button + modal) until backend/domain are ready --- */
-#downloadBtn,
-#downloadModal { 
-    display: none !important; 
+/* Help page styles */
+.help-content {
+    padding: 40px 20px;
+    text-align: center;
+    color: #888;
 }
-=======
->>>>>>> 73bc302 (feat(download): wire email capture to Cloud Function endpoint; improve UX during send; note CORS domain.)
+
+.help-content h2 {
+    color: #ff6b6b;
+    margin-bottom: 20px;
+    font-size: 1.8rem;
+}

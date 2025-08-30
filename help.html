@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Help - Anibal Kitchen</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="brand">
+                <h1>Help</h1>
+                <p>Anibal Kitchen - Beats Catalog</p>
+            </div>
+            <div class="header-actions">
+                <button id="backBtn" class="help-toggle" title="Back to Catalog">
+                    <i class="fas fa-question"></i>
+                </button>
+            </div>
+        </header>
+
+        <div class="help-content">
+            <h2>Coming Soon...</h2>
+            <p>Help content will be available here soon.</p>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('backBtn').addEventListener('click', function() {
+            window.location.href = 'index.html';
+        });
+    </script>
+</body>
+</html>
