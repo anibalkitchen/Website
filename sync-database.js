@@ -17,7 +17,8 @@ const GENRE_MAPPING = {
     'Reggaeton': 'reggaeton',
     'Rage': 'rage',
     'Electronic': 'electronic',
-    'Rock': 'rock'
+    'Rock': 'rock',
+    'West Coast': 'west-coast'
 };
 
 // Mapeo de carpetas de ideas a géneros
