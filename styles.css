@@ -1066,104 +1066,85 @@ body {
     margin: 0;
 }
 
-/* Portfolio Player */
+/* Portfolio Player - Minimal Design */
 .portfolio-player {
     background: linear-gradient(135deg, #2a2a2a 0%, #1f1f1f 100%);
-    border-radius: 15px;
-    padding: 20px;
+    border-radius: 10px;
+    padding: 15px;
     border: 1px solid #333;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
 }
 
 .portfolio-player-content {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    gap: 20px;
+    justify-content: center;
+    gap: 15px;
+    max-width: 400px;
+    margin: 0 auto;
 }
 
 .portfolio-player-left {
     display: flex;
     align-items: center;
-    gap: 20px;
-    flex: 1;
-    min-width: 0;
+    gap: 0;
 }
 
 .portfolio-player-center {
-    flex: 2;
-    max-width: 500px;
+    flex: 1;
+    max-width: 250px;
 }
 
 .portfolio-player-right {
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    flex: 1;
-    min-width: 0;
+    display: none;
 }
 
 .portfolio-player-controls {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 0;
 }
 
 .portfolio-player-controls button {
-    background: rgba(255, 107, 107, 0.2);
-    border: none;
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    color: #ff6b6b;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.portfolio-player-controls button:hover {
-    background: rgba(255, 107, 107, 0.3);
-    transform: scale(1.1);
+    display: none;
 }
 
 #portfolioPlayBtn {
-    width: 50px;
-    height: 50px;
-    font-size: 1.2rem;
+    display: flex !important;
     background: #ff6b6b;
+    border: none;
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
     color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
 }
 
 #portfolioPlayBtn:hover {
     background: #ff5252;
+    transform: scale(1.05);
 }
 
-.portfolio-track-info span {
-    font-size: 1rem;
-    font-weight: 500;
-    color: #fff;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: block;
-    max-width: 250px;
+.portfolio-track-info {
+    display: none;
 }
 
 .portfolio-player-progress {
     display: flex;
     align-items: center;
-    gap: 15px;
+    gap: 0;
     width: 100%;
 }
 
 .portfolio-progress-bar {
     flex: 1;
-    height: 6px;
+    height: 4px;
     background: #333;
-    border-radius: 3px;
+    border-radius: 2px;
     cursor: pointer;
     overflow: hidden;
 }
@@ -1176,29 +1157,11 @@ body {
 }
 
 .portfolio-player-progress span {
-    color: #888;
-    font-size: 0.9rem;
-    min-width: 40px;
-    text-align: center;
+    display: none;
 }
 
 .portfolio-player-volume {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.portfolio-player-volume i {
-    color: #888;
-    font-size: 1rem;
-}
-
-#portfolioVolumeSlider {
-    width: 100px;
-    height: 4px;
-    background: #333;
-    outline: none;
-    border-radius: 2px;
+    display: none;
 }
 
 /* Portfolio Tracks List */
@@ -1211,14 +1174,13 @@ body {
 
 .portfolio-list-header {
     display: grid;
-    grid-template-columns: 2fr 1fr 1fr 80px;
+    grid-template-columns: 1fr 80px;
     gap: 20px;
     padding: 20px 25px;
     background: #1a1a1a;
-    border-bottom: 1px solid #333;
-    font-weight: 600;
     color: #888;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
+    font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.5px;
 }
@@ -1230,7 +1192,7 @@ body {
 
 .portfolio-track-row {
     display: grid;
-    grid-template-columns: 2fr 1fr 1fr 80px;
+    grid-template-columns: 1fr 80px;
     gap: 20px;
     padding: 15px 25px;
     border-bottom: 1px solid #333;

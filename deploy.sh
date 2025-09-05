@@ -110,6 +110,9 @@ for file in ideas_files:
 for file in portfolio_files:
     file['genre'] = get_portfolio_genre_from_name(file['name'])
 
+# Ordenar portfolio alfabéticamente
+portfolio_files.sort(key=lambda x: x['name'].lower())
+
 # Leer script.js
 with open(SCRIPT_FILE, 'r', encoding='utf-8') as f:
     script_content = f.read()
@@ -293,6 +296,7 @@ timestamp = datetime.datetime.now().isoformat()
 # Ideas data
 ideas_js = '// Ideas data - organized by month folders (Ideas)\nconst ideasData = [\n'
 ideas_js += f'    // Generado automáticamente - {timestamp}\n'
+portfolio_files.sort(key=lambda x: x['name'].lower())
 for file in sorted(ideas_files, key=lambda x: x['name']):
     ideas_js += f'    {{ name: \"{file[\"name\"]}\", file: \"{file[\"file\"]}\", genre: \"{file[\"genre\"]}\", size: {file[\"size\"]} }},\n'
 ideas_js += '];\n'
