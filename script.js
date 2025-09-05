@@ -1,6 +1,6 @@
 // Portfolio data - mixing engineering examples
 const portfolioData = [
-    // Generado automáticamente - 2025-09-05T03:04:18.549217
+    // Generado automáticamente - 2025-09-05T03:33:57.149153
     { name: "DanceHall - Mixed", file: "DanceHall - Mixed.mp3", genre: "dancehall", size: 843087 },
     { name: "DanceHall - UnMixed", file: "DanceHall - UnMixed.mp3", genre: "dancehall", size: 843089 },
     { name: "Electro - Mixed", file: "Electro - Mixed.mp3", genre: "electronic", size: 563245 },
@@ -17,7 +17,7 @@ const portfolioData = [
 
 // Ideas data - organized by month folders (Ideas)
 const ideasData = [
-    // Generado automáticamente - 2025-09-05T03:04:18.548756
+    // Generado automáticamente - 2025-09-05T03:33:57.149045
     { name: "Reggaeton - Septiembre 2 - 2025", file: "Septiembre/Reggaeton - Septiembre 2 - 2025.mp3", genre: "septiembre", size: 1816541 },
     { name: "West Coast - Agosto 24 - Demo", file: "Septiembre/West Coast - Agosto 24 - Demo.mp3", genre: "septiembre", size: 1706880 },
     { name: "Trap - Septiembre 2 - 2025", file: "Septiembre/Trap - Septiembre 2 - 2025.mp3", genre: "septiembre", size: 924696 },
@@ -35,7 +35,7 @@ const ideasData = [
 
 // Beats data - organized by folder structure
 const beats = [
-    // Generado automáticamente - 2025-09-05T03:04:18.546825
+    // Generado automáticamente - 2025-09-05T03:33:57.148697
     { name: "Beast Mode", file: "Drill/Beast Mode.mp3", genre: "drill", size: 3911720 },
     { name: "Risky", file: "Drill/Risky.mp3", genre: "drill", size: 5214915 },
     { name: "Scars", file: "Drill/Scars.mp3", genre: "drill", size: 3363075 },
