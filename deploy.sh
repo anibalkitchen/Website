@@ -38,10 +38,10 @@ GENRE_MAPPING = {
     'Dark Boom Bap': 'dark-boom-bap',
     'Trap': 'trap',
     'Drill': 'drill',
-    'Reggaeton': 'reggaeton',
     'Rage': 'rage',
     'Electronic': 'electronic',
-    'Rock': 'rock'
+    'Rock': 'rock',
+    'West Coast': 'west-coast'
 }
 
 IDEAS_GENRE_MAPPING = {

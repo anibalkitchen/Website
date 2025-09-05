@@ -1,6 +1,6 @@
 // Portfolio data - mixing engineering examples
 const portfolioData = [
-    // Generado automáticamente - 2025-09-05T02:34:33.596907
+    // Generado automáticamente - 2025-09-05T02:43:00.779615
     { name: "DanceHall - Mixed", file: "DanceHall - Mixed.mp3", genre: "dancehall", size: 843087 },
     { name: "DanceHall - UnMixed", file: "DanceHall - UnMixed.mp3", genre: "dancehall", size: 843089 },
     { name: "Electro - Mixed", file: "Electro - Mixed.mp3", genre: "electronic", size: 563245 },
@@ -17,7 +17,7 @@ const portfolioData = [
 
 // Ideas data - organized by month folders (Ideas)
 const ideasData = [
-    // Generado automáticamente - 2025-09-05T02:34:33.596807
+    // Generado automáticamente - 2025-09-05T02:43:00.779481
     { name: "Reggaeton - Septiembre 2 - 2025", file: "Septiembre/Reggaeton - Septiembre 2 - 2025.mp3", genre: "septiembre", size: 1816541 },
     { name: "West Coast - Agosto 24 - Demo", file: "Septiembre/West Coast - Agosto 24 - Demo.mp3", genre: "septiembre", size: 1706880 },
     { name: "Trap - Septiembre 2 - 2025", file: "Septiembre/Trap - Septiembre 2 - 2025.mp3", genre: "septiembre", size: 924696 },
@@ -35,7 +35,7 @@ const ideasData = [
 
 // Beats data - organized by folder structure
 const beats = [
-    // Generado automáticamente - 2025-09-05T02:34:33.596451
+    // Generado automáticamente - 2025-09-05T02:43:00.778990
     { name: "Beast Mode", file: "Drill/Beast Mode.mp3", genre: "drill", size: 3911720 },
     { name: "Risky", file: "Drill/Risky.mp3", genre: "drill", size: 5214915 },
     { name: "Scars", file: "Drill/Scars.mp3", genre: "drill", size: 3363075 },
@@ -178,24 +178,24 @@ const beats = [
     { name: "Sueños", file: "Electronic/Sueños.mp3", genre: "electronic", size: 4186767 },
     { name: "Discover You", file: "Electronic/Discover You.mp3", genre: "electronic", size: 4841482 },
     { name: "Break You", file: "Rock/Break You.mp3", genre: "rock", size: 4241479 },
-    { name: "Beaming", file: "West Coast/Beaming.mp3", genre: "unknown", size: 3451877 },
-    { name: "Moon Rock", file: "West Coast/Moon Rock.mp3", genre: "unknown", size: 3532519 },
-    { name: "Special Ops", file: "West Coast/Special Ops.mp3", genre: "unknown", size: 3315081 },
-    { name: "SRT", file: "West Coast/SRT.mp3", genre: "unknown", size: 3711073 },
-    { name: "Sippin", file: "West Coast/Sippin.mp3", genre: "unknown", size: 3679876 },
-    { name: "King - West", file: "West Coast/King - West.mp3", genre: "unknown", size: 3516679 },
-    { name: "Dark Side", file: "West Coast/Dark Side.mp3", genre: "unknown", size: 3603079 },
+    { name: "Beaming", file: "West Coast/Beaming.mp3", genre: "west-coast", size: 3451877 },
+    { name: "Moon Rock", file: "West Coast/Moon Rock.mp3", genre: "west-coast", size: 3532519 },
+    { name: "Special Ops", file: "West Coast/Special Ops.mp3", genre: "west-coast", size: 3315081 },
+    { name: "SRT", file: "West Coast/SRT.mp3", genre: "west-coast", size: 3711073 },
+    { name: "Sippin", file: "West Coast/Sippin.mp3", genre: "west-coast", size: 3679876 },
+    { name: "King - West", file: "West Coast/King - West.mp3", genre: "west-coast", size: 3516679 },
+    { name: "Dark Side", file: "West Coast/Dark Side.mp3", genre: "west-coast", size: 3603079 },
     { name: "FLXN", file: "Rage/FLXN.mp3", genre: "rage", size: 2340194 },
     { name: "IDKY", file: "Rage/IDKY.mp3", genre: "rage", size: 2813954 },
     { name: "SHXT", file: "Rage/SHXT.mp3", genre: "rage", size: 2340194 },
     { name: "Nascar", file: "Rage/Nascar.mp3", genre: "rage", size: 2847556 },
     { name: "Can't Do This", file: "Rage/Can't Do This.mp3", genre: "rage", size: 3441405 },
-    { name: "Historia", file: "Reggaeton/Historia.mp3", genre: "reggaeton", size: 3742278 },
-    { name: "Recuerdo", file: "Reggaeton/Recuerdo.mp3", genre: "reggaeton", size: 4148838 },
-    { name: "Regresa", file: "Reggaeton/Regresa.mp3", genre: "reggaeton", size: 4643237 },
-    { name: "Otro Numero", file: "Reggaeton/Otro Numero.mp3", genre: "reggaeton", size: 3655401 },
-    { name: "Olvidarte", file: "Reggaeton/Olvidarte.mp3", genre: "reggaeton", size: 3950119 },
-    { name: "Conocida", file: "Reggaeton/Conocida.mp3", genre: "reggaeton", size: 3616038 }
+    { name: "Historia", file: "Reggaeton/Historia.mp3", genre: "unknown", size: 3742278 },
+    { name: "Recuerdo", file: "Reggaeton/Recuerdo.mp3", genre: "unknown", size: 4148838 },
+    { name: "Regresa", file: "Reggaeton/Regresa.mp3", genre: "unknown", size: 4643237 },
+    { name: "Otro Numero", file: "Reggaeton/Otro Numero.mp3", genre: "unknown", size: 3655401 },
+    { name: "Olvidarte", file: "Reggaeton/Olvidarte.mp3", genre: "unknown", size: 3950119 },
+    { name: "Conocida", file: "Reggaeton/Conocida.mp3", genre: "unknown", size: 3616038 }
 ];
 
 // Map Boom Bap -> Dark Boom Bap if file was moved
