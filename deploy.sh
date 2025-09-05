@@ -29,6 +29,7 @@ from pathlib import Path
 # Configuración
 MP3_DIR = './MP3'
 IDEAS_DIR = './Ideas'
+PORTFOLIO_DIR = './Portafolio'
 SCRIPT_FILE = './script.js'
 
 # Mapeo de carpetas a géneros
@@ -46,6 +47,27 @@ GENRE_MAPPING = {
 IDEAS_GENRE_MAPPING = {
     'Agosto': 'agosto'
 }
+
+def get_portfolio_genre_from_name(filename):
+    name = filename.lower()
+    if 'hip-hop' in name or 'hiphop' in name or 'rap' in name:
+        return 'hip-hop'
+    elif 'trap' in name:
+        return 'trap'
+    elif 'reggaeton' in name:
+        return 'reggaeton'
+    elif 'rock' in name:
+        return 'rock'
+    elif 'pop' in name:
+        return 'pop'
+    elif 'electronic' in name or 'edm' in name or 'electro' in name:
+        return 'electronic'
+    elif 'jazz' in name:
+        return 'jazz'
+    elif 'dancehall' in name:
+        return 'dancehall'
+    else:
+        return 'mixed'
 
 def get_all_mp3_files(directory, base_dir=''):
     files = []
@@ -78,10 +100,15 @@ def get_all_mp3_files(directory, base_dir=''):
 # Obtener archivos
 beats_files = get_all_mp3_files(MP3_DIR)
 ideas_files = get_all_mp3_files(IDEAS_DIR)
+portfolio_files = get_all_mp3_files(PORTFOLIO_DIR)
+
 for file in ideas_files:
     parts = file['file'].split('/')
     folder = parts[0] if parts else ''
     file['genre'] = IDEAS_GENRE_MAPPING.get(folder, folder.lower())
+
+for file in portfolio_files:
+    file['genre'] = get_portfolio_genre_from_name(file['name'])
 
 # Leer script.js
 with open(SCRIPT_FILE, 'r', encoding='utf-8') as f:
@@ -96,6 +123,11 @@ beats_array = ',\n'.join([
 ideas_array = ',\n'.join([
     f'    {{ name: \"{file[\"name\"]}\", file: \"{file[\"file\"]}\", genre: \"{file[\"genre\"]}\", size: {file[\"size\"]} }}'
     for file in ideas_files
+])
+
+portfolio_array = ',\n'.join([
+    f'    {{ name: \"{file[\"name\"]}\", file: \"{file[\"file\"]}\", genre: \"{file[\"genre\"]}\", size: {file[\"size\"]} }}'
+    for file in portfolio_files
 ])
 
 # Reemplazar beats
@@ -116,6 +148,15 @@ new_ideas = f'''const ideasData = [
 
 script_content = re.sub(ideas_pattern, new_ideas, script_content)
 
+# Reemplazar portfolio
+portfolio_pattern = r'const portfolioData = \[[\s\S]*?\];'
+new_portfolio = f'''const portfolioData = [
+    // Generado automáticamente - {__import__('datetime').datetime.now().isoformat()}
+{portfolio_array}
+];'''
+
+script_content = re.sub(portfolio_pattern, new_portfolio, script_content)
+
 # Actualizar DARK_BOOM_BAP_FILES
 dark_files = [f'\"{os.path.basename(file[\"file\"])}\"' for file in beats_files if file['file'].startswith('Dark Boom Bap/')]
 dark_files_str = ','.join(dark_files)
@@ -131,7 +172,7 @@ script_content = re.sub(dark_pattern, new_dark, script_content)
 with open(SCRIPT_FILE, 'w', encoding='utf-8') as f:
     f.write(script_content)
 
-print(f'   ✅ Sincronizados {len(beats_files)} beats y {len(ideas_files)} ideas')
+print(f'   ✅ Sincronizados {len(beats_files)} beats, {len(ideas_files)} ideas y {len(portfolio_files)} portfolio')
 "
 
 if [ $? -ne 0 ]; then
