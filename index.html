@@ -51,6 +51,9 @@
                 <button id="searchToggle" class="search-toggle" title="Search">
                     <i class="fas fa-search"></i>
                 </button>
+                <button id="portfolioToggle" class="portfolio-toggle" title="Portfolio">
+                    <i class="fas fa-compact-disc"></i>
+                </button>
                 <button id="helpToggle" class="help-toggle" title="Help">
                     <i class="fas fa-question"></i>
                 </button>
@@ -69,6 +72,70 @@
                 <button id="searchClose" class="search-close">
                     <i class="fas fa-times"></i>
                 </button>
+            </div>
+        </div>
+
+        <!-- Portfolio Page -->
+        <div class="portfolio-overlay" id="portfolioOverlay">
+            <div class="portfolio-container">
+                <div class="portfolio-header">
+                    <h2><i class="fas fa-compact-disc"></i> Mixing Engineering Portfolio</h2>
+                    <button id="portfolioClose" class="portfolio-close">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="portfolio-content">
+                    <div class="portfolio-intro">
+                        <p>Welcome to my mixing engineering portfolio. Here you can listen to examples of my professional mixing work across different genres and styles.</p>
+                    </div>
+                    
+                    <!-- Portfolio Audio Player -->
+                    <div class="portfolio-player" id="portfolioPlayer">
+                        <div class="portfolio-player-content">
+                            <div class="portfolio-player-left">
+                                <div class="portfolio-player-controls">
+                                    <button id="portfolioPrevBtn"><i class="fas fa-step-backward"></i></button>
+                                    <button id="portfolioPlayBtn"><i class="fas fa-play"></i></button>
+                                    <button id="portfolioNextBtn"><i class="fas fa-step-forward"></i></button>
+                                </div>
+                                <div class="portfolio-track-info">
+                                    <span id="portfolioCurrentTrack">Select a mix to play</span>
+                                </div>
+                            </div>
+                            <div class="portfolio-player-center">
+                                <div class="portfolio-player-progress">
+                                    <span id="portfolioCurrentTime">0:00</span>
+                                    <div class="portfolio-progress-bar">
+                                        <div class="portfolio-progress" id="portfolioProgress"></div>
+                                    </div>
+                                    <span id="portfolioDuration">0:00</span>
+                                </div>
+                            </div>
+                            <div class="portfolio-player-right">
+                                <div class="portfolio-player-volume">
+                                    <i class="fas fa-volume-up"></i>
+                                    <input type="range" id="portfolioVolumeSlider" min="0" max="100" value="70">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Portfolio Tracks List -->
+                    <div class="portfolio-tracks" id="portfolioTracks">
+                        <div class="portfolio-list-header">
+                            <div class="col-title">Mix Title</div>
+                            <div class="col-genre">Genre</div>
+                            <div class="col-duration">Duration</div>
+                            <div class="col-action">Play</div>
+                        </div>
+                        <div class="portfolio-tracks-container" id="portfolioTracksContainer">
+                            <div class="portfolio-empty">
+                                <i class="fas fa-music"></i>
+                                <p>Portfolio tracks will appear here once you add audio files to the "Portafolio" folder.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 

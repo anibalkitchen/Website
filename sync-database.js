@@ -6,6 +6,7 @@ const path = require('path');
 // Configuración
 const MP3_DIR = './MP3';
 const IDEAS_DIR = './Ideas';
+const PORTFOLIO_DIR = './Portafolio';
 const SCRIPT_FILE = './script.js';
 
 // Mapeo de carpetas a géneros
@@ -77,6 +78,20 @@ function getIdeasGenreFromPath(filePath) {
     return IDEAS_GENRE_MAPPING[folder] || folder.toLowerCase();
 }
 
+// Función para determinar el género de portfolio (inferir del nombre del archivo)
+function getPortfolioGenreFromName(fileName) {
+    const name = fileName.toLowerCase();
+    if (name.includes('hip-hop') || name.includes('hiphop') || name.includes('rap')) return 'hip-hop';
+    if (name.includes('trap')) return 'trap';
+    if (name.includes('reggaeton')) return 'reggaeton';
+    if (name.includes('rock')) return 'rock';
+    if (name.includes('pop')) return 'pop';
+    if (name.includes('electronic') || name.includes('edm')) return 'electronic';
+    if (name.includes('jazz')) return 'jazz';
+    if (name.includes('r&b') || name.includes('rnb')) return 'r&b';
+    return 'mixed'; // Default genre for mixing portfolio
+}
+
 // Obtener archivos de beats
 console.log('📁 Escaneando archivos de beats...');
 const beatsFiles = getAllMP3Files(MP3_DIR);
@@ -90,6 +105,14 @@ const ideasFiles = getAllMP3Files(IDEAS_DIR).map(file => ({
 }));
 console.log(`   Encontrados ${ideasFiles.length} archivos de ideas`);
 
+// Obtener archivos de portfolio
+console.log('📁 Escaneando archivos de portfolio...');
+const portfolioFiles = getAllMP3Files(PORTFOLIO_DIR).map(file => ({
+    ...file,
+    genre: getPortfolioGenreFromName(file.name)
+}));
+console.log(`   Encontrados ${portfolioFiles.length} archivos de portfolio`);
+
 // Leer el archivo script.js actual
 console.log('\n📝 Leyendo script.js actual...');
 let scriptContent = fs.readFileSync(SCRIPT_FILE, 'utf8');
@@ -101,6 +124,11 @@ const beatsArray = beatsFiles.map(file => {
 
 // Generar nuevo array de ideas
 const ideasArray = ideasFiles.map(file => {
+    return `    { name: "${file.name}", file: "${file.file}", genre: "${file.genre}", size: ${file.size} }`;
+}).join(',\n');
+
+// Generar nuevo array de portfolio
+const portfolioArray = portfolioFiles.map(file => {
     return `    { name: "${file.name}", file: "${file.file}", genre: "${file.genre}", size: ${file.size} }`;
 }).join(',\n');
 
@@ -121,6 +149,15 @@ ${ideasArray}
 ];`;
 
 scriptContent = scriptContent.replace(ideasRegex, newIdeasSection);
+
+// Reemplazar el array de portfolio en el script
+const portfolioRegex = /const portfolioData = \[\s*\/\/.*?\n([\s\S]*?)\n\];/;
+const newPortfolioSection = `const portfolioData = [
+    // Generado automáticamente - ${new Date().toISOString()}
+${portfolioArray}
+];`;
+
+scriptContent = scriptContent.replace(portfolioRegex, newPortfolioSection);
 
 // Actualizar el conjunto DARK_BOOM_BAP_FILES
 const darkBoomBapFiles = beatsFiles
@@ -143,6 +180,7 @@ fs.writeFileSync(SCRIPT_FILE, scriptContent);
 console.log('\n✅ Sincronización completada!');
 console.log(`   📊 Beats: ${beatsFiles.length} archivos`);
 console.log(`   💡 Ideas: ${ideasFiles.length} archivos`);
+console.log(`   🎧 Portfolio: ${portfolioFiles.length} archivos`);
 
 // Mostrar distribución por género
 const genreCount = {};
