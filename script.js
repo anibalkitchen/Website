@@ -1,6 +1,6 @@
 // Portfolio data - mixing engineering examples
 const portfolioData = [
-    // Generado automáticamente - 2025-09-09T22:03:11.083602
+    // Generado automáticamente - 2025-09-10T00:07:21.299141
     { name: "DanceHall - Mixed", file: "DanceHall - Mixed.mp3", genre: "dancehall", size: 843087 },
     { name: "DanceHall - UnMixed", file: "DanceHall - UnMixed.mp3", genre: "dancehall", size: 843089 },
     { name: "Electro - Mixed", file: "Electro - Mixed.mp3", genre: "electronic", size: 563245 },
@@ -17,10 +17,11 @@ const portfolioData = [
 
 // Ideas data - organized by month folders (Ideas)
 const ideasData = [
-    // Generado automáticamente - 2025-09-09T22:03:11.083171
+    // Generado automáticamente - 2025-09-10T00:07:21.298696
     { name: "Reggaeton - Septiembre 2 - 2025", file: "Septiembre/Reggaeton - Septiembre 2 - 2025.mp3", genre: "septiembre", size: 1816541 },
     { name: "West Coast - Agosto 24 - Demo", file: "Septiembre/West Coast - Agosto 24 - Demo.mp3", genre: "septiembre", size: 1706880 },
     { name: "2 - Trap - Septiembre 9 - 2025 - IA", file: "Septiembre/2 - Trap - Septiembre 9 - 2025 - IA.mp3", genre: "septiembre", size: 1070141 },
+    { name: "3 - Trap - Septiembre 10 - 2025", file: "Septiembre/3 - Trap - Septiembre 10 - 2025.mp3", genre: "septiembre", size: 891581 },
     { name: "Trap - Septiembre 2 - 2025", file: "Septiembre/Trap - Septiembre 2 - 2025.mp3", genre: "septiembre", size: 924696 },
     { name: "1 - Trap - Septiembre 3 - 2025", file: "Septiembre/1 - Trap - Septiembre 3 - 2025.mp3", genre: "septiembre", size: 943420 },
     { name: "Trap - Agosto 31 - 2025 - Idea", file: "Agosto/Trap - Agosto 31 - 2025 - Idea.mp3", genre: "agosto", size: 826300 },
@@ -36,7 +37,7 @@ const ideasData = [
 
 // Beats data - organized by folder structure
 const beats = [
-    // Generado automáticamente - 2025-09-09T22:03:11.081557
+    // Generado automáticamente - 2025-09-10T00:07:21.297008
     { name: "Beast Mode", file: "Drill/Beast Mode.mp3", genre: "drill", size: 3911720 },
     { name: "Risky", file: "Drill/Risky.mp3", genre: "drill", size: 5214915 },
     { name: "Scars", file: "Drill/Scars.mp3", genre: "drill", size: 3363075 },
