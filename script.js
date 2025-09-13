@@ -1,6 +1,6 @@
 // Portfolio data - mixing engineering examples
 const portfolioData = [
-    // Generado automáticamente - 2025-09-11T20:49:35.700010
+    // Generado automáticamente - 2025-09-12T22:01:52.548102
     { name: "DanceHall - Mixed", file: "DanceHall - Mixed.mp3", genre: "dancehall", size: 843087 },
     { name: "DanceHall - UnMixed", file: "DanceHall - UnMixed.mp3", genre: "dancehall", size: 843089 },
     { name: "Electro - Mixed", file: "Electro - Mixed.mp3", genre: "electronic", size: 563245 },
@@ -17,7 +17,7 @@ const portfolioData = [
 
 // Ideas data - organized by month folders (Ideas)
 const ideasData = [
-    // Generado automáticamente - 2025-09-11T20:49:35.699368
+    // Generado automáticamente - 2025-09-12T22:01:52.547797
     { name: "Reggaeton - Septiembre 2 - 2025", file: "Septiembre/Reggaeton - Septiembre 2 - 2025.mp3", genre: "septiembre", size: 1816541 },
     { name: "West Coast - Agosto 24 - Demo", file: "Septiembre/West Coast - Agosto 24 - Demo.mp3", genre: "septiembre", size: 1706880 },
     { name: "2 - Trap - Septiembre 9 - 2025 - IA", file: "Septiembre/2 - Trap - Septiembre 9 - 2025 - IA.mp3", genre: "septiembre", size: 1070141 },
@@ -37,7 +37,7 @@ const ideasData = [
 
 // Beats data - organized by folder structure
 const beats = [
-    // Generado automáticamente - 2025-09-11T20:49:35.697883
+    // Generado automáticamente - 2025-09-12T22:01:52.546784
     { name: "Beast Mode", file: "Drill/Beast Mode.mp3", genre: "drill", size: 3911720 },
     { name: "Risky", file: "Drill/Risky.mp3", genre: "drill", size: 5214915 },
     { name: "Scars", file: "Drill/Scars.mp3", genre: "drill", size: 3363075 },
@@ -136,6 +136,7 @@ const beats = [
     { name: "Witchcraft", file: "Dark Boom Bap/Witchcraft.mp3", genre: "dark-boom-bap", size: 3799400 },
     { name: "Dark Boom Bap - Void", file: "Dark Boom Bap/Dark Boom Bap - Void.mp3", genre: "dark-boom-bap", size: 4203090 },
     { name: "Pirata", file: "Dark Boom Bap/Pirata.mp3", genre: "dark-boom-bap", size: 3439396 },
+    { name: "Punto", file: "Dark Boom Bap/Punto.mp3", genre: "dark-boom-bap", size: 3905955 },
     { name: "Calmado", file: "Boom Bap/Calmado.mp3", genre: "boom-bap", size: 4417157 },
     { name: "At Night", file: "Boom Bap/At Night.mp3", genre: "boom-bap", size: 3654918 },
     { name: "Villain", file: "Boom Bap/Villain.mp3", genre: "boom-bap", size: 3975557 },
@@ -210,7 +211,7 @@ const beats = [
 // Map Boom Bap -> Dark Boom Bap if file was moved
 // List of filenames present in `MP3/Dark Boom Bap/`
 const DARK_BOOM_BAP_FILES = new Set([
-    "Ashes.mp3","Stolas.mp3","Gargola.mp3","Infinite Labyrinth.mp3","Quimico.mp3","Dracula.mp3","Ouroboros.mp3","True Grit.mp3","Dangerous.mp3","Monster.mp3","Viaje.mp3","Problema.mp3","7 Kilos.mp3","Engulfed By Madness.mp3","Sol Negro.mp3","Santeria.mp3","Magia.mp3","Beast.mp3","Cerberus.mp3","Subconscious.mp3","Demente.mp3","Rage.mp3","Legacy.mp3","Transdimensional Picnic.mp3","Belial.mp3","Ice Box.mp3","Tinta Negra.mp3","Roto.mp3","Expanded Perception.mp3","Maldito.mp3","Bizarre Dream.mp3","Ritual Night.mp3","Joker.mp3","Illusion of Choice.mp3","Blood Stain.mp3","Ethereal Illusions.mp3","Diamond Cut.mp3","Walking Through Chaos.mp3","Smoke.mp3","Most Wanted.mp3","Void.mp3","Smoke - Griselda.mp3","Mente Rota.mp3","THC - Intro.mp3","Noche.mp3","Clandestine.mp3","Night Light.mp3","From The Darkness.mp3","Medusa.mp3","Furious.mp3","Flota.mp3","Robbery.mp3","Abnormal Thoughts.mp3","Melting Mind.mp3","Ketamine.mp3","Basilisco.mp3","Mad.mp3","Infinite Dream.mp3","Money In Hand.mp3","Vago.mp3","Final Boss.mp3","Haze.mp3","Erizo.mp3","Cursed.mp3","Millitia.mp3","Ya se la Saben.mp3","Bestia.mp3","Ain't Easy.mp3","Hallucinations.mp3","illuminati.mp3","Headshot.mp3","Paimon.mp3","Dark Knight.mp3","100k Stack.mp3","Pensamientos.mp3","Night Plan.mp3","Voices on My Head.mp3","Andromeda.mp3","Brujo.mp3","Orias.mp3","Moloc.mp3","Ira.mp3","Insomnio.mp3","Uncut Lines.mp3","Ares.mp3","Phantom Shadow.mp3","3 Gramos.mp3","UFO Ride.mp3","Not Easy.mp3","Machiavelli.mp3","Mysterious-Force.mp3","Witchcraft.mp3","Dark Boom Bap - Void.mp3","Pirata.mp3"
+    "Ashes.mp3","Stolas.mp3","Gargola.mp3","Infinite Labyrinth.mp3","Quimico.mp3","Dracula.mp3","Ouroboros.mp3","True Grit.mp3","Dangerous.mp3","Monster.mp3","Viaje.mp3","Problema.mp3","7 Kilos.mp3","Engulfed By Madness.mp3","Sol Negro.mp3","Santeria.mp3","Magia.mp3","Beast.mp3","Cerberus.mp3","Subconscious.mp3","Demente.mp3","Rage.mp3","Legacy.mp3","Transdimensional Picnic.mp3","Belial.mp3","Ice Box.mp3","Tinta Negra.mp3","Roto.mp3","Expanded Perception.mp3","Maldito.mp3","Bizarre Dream.mp3","Ritual Night.mp3","Joker.mp3","Illusion of Choice.mp3","Blood Stain.mp3","Ethereal Illusions.mp3","Diamond Cut.mp3","Walking Through Chaos.mp3","Smoke.mp3","Most Wanted.mp3","Void.mp3","Smoke - Griselda.mp3","Mente Rota.mp3","THC - Intro.mp3","Noche.mp3","Clandestine.mp3","Night Light.mp3","From The Darkness.mp3","Medusa.mp3","Furious.mp3","Flota.mp3","Robbery.mp3","Abnormal Thoughts.mp3","Melting Mind.mp3","Ketamine.mp3","Basilisco.mp3","Mad.mp3","Infinite Dream.mp3","Money In Hand.mp3","Vago.mp3","Final Boss.mp3","Haze.mp3","Erizo.mp3","Cursed.mp3","Millitia.mp3","Ya se la Saben.mp3","Bestia.mp3","Ain't Easy.mp3","Hallucinations.mp3","illuminati.mp3","Headshot.mp3","Paimon.mp3","Dark Knight.mp3","100k Stack.mp3","Pensamientos.mp3","Night Plan.mp3","Voices on My Head.mp3","Andromeda.mp3","Brujo.mp3","Orias.mp3","Moloc.mp3","Ira.mp3","Insomnio.mp3","Uncut Lines.mp3","Ares.mp3","Phantom Shadow.mp3","3 Gramos.mp3","UFO Ride.mp3","Not Easy.mp3","Machiavelli.mp3","Mysterious-Force.mp3","Witchcraft.mp3","Dark Boom Bap - Void.mp3","Pirata.mp3","Punto.mp3"
 ]);
 
 // Normalize beats: if a Boom Bap file is now under Dark Boom Bap, update its path and genre
